@@ -1062,6 +1062,7 @@ def build_dashboard(
     questions: list[Question],
     labs: list[Lab],
     lm: dict | None = None,
+    found: list[Foundation] | None = None,
 ) -> str:
     q_by_obj: dict[str, int] = {}
     for q in questions:
@@ -1131,8 +1132,107 @@ estimate from this system's own question bank — not a prediction of your Micro
 <div id="weak-areas"></div>
 {"".join(sections)}
 {build_dashboard_paths(lm or {}, objectives)}
+{build_dashboard_study_path(objectives, found or [])}
 """
     return page("Dashboard", body, depth=0, scripts=["dashboard.js"], active="index.html")
+
+
+STEP_KINDS = {
+    "read": "Read",
+    "lesson": "Lessons",
+    "lab": "Lab",
+    "practice": "Practice",
+    "review": "Review",
+    "mock": "Mock exam",
+}
+
+
+def load_study_path(valid_ids: set[str], slugs: set[str]) -> dict:
+    """content/study-path.toml — the suggested week-by-week route, shown at the end of the dashboard."""
+    path = CONTENT / "study-path.toml"
+    if not path.exists():
+        return {}
+    with path.open("rb") as fh:
+        sp = tomllib.load(fh)
+    for w in sp.get("weeks", []):
+        for st in w.get("steps", []):
+            if st.get("kind") not in STEP_KINDS:
+                error(f"{path}: week {w.get('n')}: unknown step kind {st.get('kind')!r}")
+            for oid in st.get("objectives", []):
+                if oid not in valid_ids:
+                    error(f"{path}: week {w.get('n')}: unknown objective {oid!r}")
+            for sl in st.get("foundations", []):
+                if sl not in slugs:
+                    error(f"{path}: week {w.get('n')}: unknown foundation {sl!r}")
+    for h in sp.get("habits", []):
+        for sl in h.get("foundations", []):
+            if sl not in slugs:
+                error(f"{path}: habit: unknown foundation {sl!r}")
+    covered = {o for w in sp.get("weeks", []) for st in w.get("steps", []) for o in st.get("objectives", [])}
+    for oid in sorted(valid_ids - covered):
+        warn(f"{path}: objective {oid} is not placed in any week")
+    return sp
+
+
+STUDY_PATH: dict = {}
+
+
+def build_dashboard_study_path(objectives: list[Objective], found: list[Foundation]) -> str:
+    sp = STUDY_PATH
+    if not sp or not sp.get("weeks"):
+        return ""
+    by_id = {o.id: o for o in objectives}
+    fmap = {f.slug: f for f in found}
+
+    def ochip(oid: str) -> str:
+        o = by_id.get(oid)
+        state = "todo" if not (o and o.has_content) else ("ok" if o.status == "verified" else "draft")
+        tip = f"{o.text if o else oid} — " + {"todo": "not written yet", "ok": "verified", "draft": "draft"}[state]
+        return f'<a class="chip sp-{state}" href="objective/{oid}.html" title="{html.escape(tip)}">{oid}</a>'
+
+    def fchip(slug: str) -> str:
+        f = fmap.get(slug)
+        label = f.title if f else slug
+        return f'<a class="chip sp-fnd" href="foundations/{slug}.html" title="Foundations primer">{html.escape(label)}</a>'
+
+    def step_html(st: dict) -> str:
+        chips = "".join(fchip(s) for s in st.get("foundations", [])) + "".join(ochip(o) for o in st.get("objectives", []))
+        chips += "".join(f'<a class="chip sp-link" href="{html.escape(u)}">{html.escape(t)}</a>' for t, u in st.get("links", []))
+        kind = st.get("kind", "lesson")
+        return (
+            f'<li class="sp-step sp-{kind}"><span class="sp-kind">{STEP_KINDS.get(kind, kind)}</span>'
+            f'<div class="sp-body"><p>{render_inline(st.get("text", ""))}</p>'
+            + (f'<div class="sp-chips">{chips}</div>' if chips else "")
+            + "</div></li>"
+        )
+
+    weeks = []
+    for w in sp["weeks"]:
+        oids = [o for st in w.get("steps", []) for o in st.get("objectives", [])]
+        done = sum(1 for o in oids if o in by_id and by_id[o].status == "verified")
+        hours = sum(by_id[o].hours for o in oids if o in by_id)
+        meta = f'<span class="flag">{len(oids)} lessons · {hours:g} h planned</span>' if oids else ""
+        weeks.append(
+            f'<article class="sp-week"><header><span class="sp-wk">Week {w["n"]}</span>'
+            f'<h3>{html.escape(w.get("title", ""))}</h3>'
+            f'<p class="note">{html.escape(w.get("focus", ""))}</p>{meta}</header>'
+            f'<ol class="sp-steps">{"".join(step_html(st) for st in w.get("steps", []))}</ol></article>'
+        )
+    habits = "".join(
+        f'<div class="sp-habit"><b>{html.escape(h.get("label", ""))}</b><p>{render_inline(h.get("text", ""))}</p>'
+        + ("".join(fchip(s) for s in h.get("foundations", [])) and f'<div class="sp-chips">{"".join(fchip(s) for s in h.get("foundations", []))}</div>')
+        + "</div>"
+        for h in sp.get("habits", [])
+    )
+    return f"""
+<section class="domain study-path" id="study-path">
+<h2>{html.escape(sp.get('title', 'Suggested study path'))}</h2>
+<p class="progress-line">{html.escape(sp.get('intro', ''))}</p>
+<p class="sp-legend"><span class="chip sp-fnd">primer</span> <span class="chip sp-ok">verified lesson</span>
+<span class="chip sp-draft">draft lesson</span> <span class="chip sp-todo">not written</span></p>
+<div class="sp-habits">{habits}</div>
+<div class="sp-weeks">{''.join(weeks)}</div>
+</section>"""
 
 
 def build_dashboard_paths(lm: dict, objectives: list[Objective]) -> str:
@@ -1916,7 +2016,7 @@ def emit(
     (SITE / "cheatsheet").mkdir(parents=True)
     (SITE / "diagram").mkdir(parents=True)
 
-    (SITE / "index.html").write_text(build_dashboard(spec, objectives, questions, labs, lm), encoding="utf-8")
+    (SITE / "index.html").write_text(build_dashboard(spec, objectives, questions, labs, lm, found), encoding="utf-8")
     for dom in spec.get("domains", []):
         dom_objs = [o for o in objectives if o.domain == dom["id"]]
         (SITE / "domain" / f"{dom['id']}.html").write_text(
@@ -2299,6 +2399,8 @@ def main() -> int:
     refs = load_references(valid_ids)
     found = load_foundations(valid_ids)
     check_foundation_refs(objectives, found)
+    global STUDY_PATH
+    STUDY_PATH = load_study_path(valid_ids, {f.slug for f in found})
     sheets = load_cheatsheets({d["id"] for d in spec.get("domains", [])})
     diagrams = load_diagrams({d["id"] for d in spec.get("domains", [])})
     check_duplicates(questions)

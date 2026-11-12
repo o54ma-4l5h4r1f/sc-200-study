@@ -1,0 +1,144 @@
+# Suggested study path — rendered as the last section of the dashboard.
+# Every `objectives` entry must be a real objective ID and every `foundations` entry a real
+# foundation slug (build.py validates both). `kind` picks the step's label:
+#   read | lesson | lab | practice | review | mock
+
+schema_version = 1
+title = "Suggested study path"
+intro = "Four weeks, about 40 hours each. The order follows the data: build the plumbing, detect, automate, respond, then hunt. Every later topic reads from the workspace you build in week 1."
+
+[[habits]]
+label = "Every day"
+text = "45 minutes of KQL in the free Log Analytics demo environment, from week 1 — not just in week 4."
+foundations = ["kql-basics"]
+
+[[habits]]
+label = "Every Friday"
+text = "Read that week's cheatsheet and diagrams, build practice questions for what you finished, then take one quiz."
+
+[[habits]]
+label = "Before week 4"
+text = "Have roughly 150–250 practice questions in the bank, or the week-4 mocks have nothing to draw from. Build them weekly, not at the end."
+
+# ---------------------------------------------------------------------------
+[[weeks]]
+n = 1
+title = "The plumbing"
+focus = "Azure basics, the Sentinel platform, getting data in"
+
+[[weeks.steps]]
+kind = "read"
+text = "Foundations 1–18, in order (about 2.5 days). Don't skip any — everything later stands on them."
+foundations = ["soc-fundamentals", "microsoft-security-stack-map", "azure-resource-hierarchy", "azure-portal-cli-basics", "entra-id-basics", "azure-rbac-and-entra-roles", "m365-tenants-and-licensing", "defender-portal-tour", "device-management-and-mde-onboarding", "log-analytics-workspace", "sentinel-content-hub-and-solutions", "kql-basics", "windows-and-linux-logging", "azure-monitor-agent-and-dcr", "diagnostic-settings-and-activity-log", "azure-policy-basics", "azure-arc-and-hybrid-machines", "logic-apps-basics"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "D1.2 — the Sentinel platform. Read the data lake primer right before the retention lesson (D1.2.2, high-risk)."
+foundations = ["sentinel-data-lake-basics"]
+objectives = ["D1.2.1", "D1.2.2", "D1.2.3", "D1.2.4"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "D1.3 — getting data in, in order."
+objectives = ["D1.3.1", "D1.3.2", "D1.3.3", "D1.3.4", "D1.3.5", "D1.3.6", "D1.3.7"]
+
+[[weeks.steps]]
+kind = "lab"
+text = "Create a Log Analytics workspace with a daily cap, turn on Microsoft Sentinel, connect a Windows VM through the Azure Monitor Agent. This gives you real data for every later week."
+
+[[weeks.steps]]
+kind = "practice"
+text = "Friday: build D1.2 + D1.3 questions, one quiz pass."
+
+# ---------------------------------------------------------------------------
+[[weeks]]
+n = 2
+title = "Detection, then automation"
+focus = "Rules create incidents; automation acts on them"
+
+[[weeks.steps]]
+kind = "lesson"
+text = "D1.4 — detections. Start with analytics rules (D1.4.3), the heaviest topic in Domain 1."
+objectives = ["D1.4.3", "D1.4.1", "D1.4.2", "D1.4.4", "D1.4.5"]
+
+[[weeks.steps]]
+kind = "lab"
+text = "Automation rules and playbooks — both can be done live on your week-1 workspace."
+objectives = ["D1.1.10", "D1.1.11"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "Defender XDR and Defender for Endpoint settings — portal tours (they need licences an Azure-only lab lacks). Re-read the device management primer first."
+foundations = ["device-management-and-mde-onboarding"]
+objectives = ["D1.1.1", "D1.1.2", "D1.1.3", "D1.1.4", "D1.1.5", "D1.1.6", "D1.1.7", "D1.1.8", "D1.1.9"]
+
+[[weeks.steps]]
+kind = "review"
+text = "Friday: D1 cheatsheet + diagrams, build D1.1 + D1.4 questions, short Domain 1 quiz."
+links = [["D1 cheatsheet", "cheatsheet/D1.html"], ["D1 diagrams", "diagram/D1.html"]]
+
+# ---------------------------------------------------------------------------
+[[weeks]]
+n = 3
+title = "Respond to incidents"
+focus = "Domain 2 — one product at a time, then the cross-product picture"
+
+[[weeks.steps]]
+kind = "lab"
+text = "Sentinel incidents, then incident cases — both labbable on your week-1 setup."
+objectives = ["D2.1.7", "D2.1.10"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "Complex attacks — read the Active Directory and Exposure Management primers first."
+foundations = ["active-directory-and-kerberos-basics", "exposure-management-basics"]
+objectives = ["D2.1.9"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "The Defender family, one product per lesson. Purview primer before D2.1.2; Conditional Access primer before D2.1.5."
+foundations = ["purview-basics", "conditional-access-basics"]
+objectives = ["D2.1.1", "D2.1.2", "D2.1.3", "D2.1.4", "D2.1.5", "D2.1.6"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "Agentic AI and Security Copilot — AI agents primer first."
+foundations = ["ai-agents-and-mcp-basics"]
+objectives = ["D2.1.8"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "Defender for Endpoint response, then Microsoft 365 investigations."
+objectives = ["D2.2.1", "D2.2.2", "D2.2.3", "D2.2.4", "D2.3.1", "D2.3.2", "D2.3.3"]
+
+[[weeks.steps]]
+kind = "review"
+text = "Friday: D2 cheatsheet + diagrams, build D2 questions, one quiz."
+links = [["D2 cheatsheet", "cheatsheet/D2.html"], ["D2 diagrams", "diagram/D2.html"]]
+
+# ---------------------------------------------------------------------------
+[[weeks]]
+n = 4
+title = "Hunt, then mock exams"
+focus = "Domain 3 in three days, then two full mocks"
+
+[[weeks.steps]]
+kind = "lesson"
+text = "Mon–Tue: KQL and Advanced Hunting — the biggest marks in Domain 3. Daily KQL practice pays off here."
+objectives = ["D3.1.1", "D3.1.2", "D3.1.3", "D3.1.4", "D3.1.5", "D3.1.6"]
+
+[[weeks.steps]]
+kind = "lesson"
+text = "Wed: Sentinel hunting, data lake KQL jobs, summary rules, notebooks. Jupyter primer before D3.2.4."
+foundations = ["jupyter-and-python-basics"]
+objectives = ["D3.2.1", "D3.2.2", "D3.2.3", "D3.2.4"]
+
+[[weeks.steps]]
+kind = "practice"
+text = "Wed evening: build D3 questions."
+links = [["D3 cheatsheet", "cheatsheet/D3.html"], ["D3 diagrams", "diagram/D3.html"]]
+
+[[weeks.steps]]
+kind = "mock"
+text = "Thu–Fri: two full mock exams, each followed by a debrief and patching weak areas with the cheatsheets."
+links = [["Mock exam", "mock-exam.html"]]

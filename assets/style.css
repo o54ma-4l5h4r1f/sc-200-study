@@ -706,3 +706,34 @@ body.az-adding main { cursor: crosshair; }
 .dash-chips { justify-content: flex-start; }
 .chip-todo { opacity: .45; }
 @media (max-width: 640px) { .path-mods th:nth-child(2), .path-mods td:nth-child(2) { display: none; } }
+
+/* Dashboard: suggested study path */
+.study-path .sp-legend { font-size: 13px; margin: 4px 0 12px; }
+.sp-habits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.sp-habit { border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius);
+  background: var(--accent-soft); padding: 10px 12px; font-size: 14px; }
+.sp-habit b { color: var(--accent); }
+.sp-habit p { margin: 4px 0 0; }
+.sp-weeks { display: grid; gap: 14px; }
+.sp-week { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  padding: 14px 16px; box-shadow: var(--shadow); }
+.sp-week header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; border-bottom: 1px solid var(--line);
+  padding-bottom: 8px; margin-bottom: 8px; }
+.sp-week header h3 { margin: 0; font-size: 18px; }
+.sp-week header .note { margin: 0; flex-basis: 100%; }
+.sp-wk { background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 600; }
+.sp-steps { list-style: none; margin: 0; padding: 0; counter-reset: sp; }
+.sp-step { display: grid; grid-template-columns: 88px 1fr; gap: 10px; padding: 8px 0; border-top: 1px dashed var(--line); }
+.sp-step:first-child { border-top: 0; }
+.sp-kind { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3);
+  padding-top: 2px; }
+.sp-lab .sp-kind, .sp-mock .sp-kind { color: var(--ok); }
+.sp-review .sp-kind, .sp-practice .sp-kind { color: var(--known); }
+.sp-body p { margin: 0 0 6px; font-size: 14.5px; }
+.sp-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip.sp-fnd { background: var(--known-soft); color: var(--known); }
+.chip.sp-ok { background: var(--ok-soft); color: var(--ok); }
+.chip.sp-draft { background: var(--hl); color: var(--hl-ink); }
+.chip.sp-todo { opacity: .45; }
+.chip.sp-link { background: var(--accent-soft); color: var(--accent); }
+@media (max-width: 640px) { .sp-step { grid-template-columns: 1fr; gap: 2px; } }
