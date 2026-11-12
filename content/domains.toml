@@ -1,0 +1,519 @@
+# SC-200 skills-measured outline -- the backbone of the whole system.
+# Source (study guide): https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-200
+# Source (cert page):    https://learn.microsoft.com/credentials/certifications/security-operations-analyst/
+#
+# Exam: SC-200 "Microsoft Security Operations Analyst"
+#   -> Microsoft Certified: Security Operations Analyst Associate
+#
+# OUTLINE VERSION captured: "Skills measured as of October 21, 2026".
+# Captured 2026-11-12 via the Microsoft Learn MCP (microsoft_docs_fetch of the live study guide).
+# Bullet text below is VERBATIM -- do not paraphrase. Question generation and the freshness diff
+# both depend on exact wording.
+#
+# `prior_cert` values: none | partial | strong  -- the learner is a FULL BEGINNER (see the README
+#   "THE LEARNER"), so everything starts at "none".
+# `hours` is the planned study allocation per bullet, weighted by exam weight x difficulty.
+#   Objective hours sum to 126 h. total_planned_hours (160) also counts the Foundations
+#   primers (~16 h, week 1) and mock exams / weak-area patching (~18 h, week 4).
+# `week` is the 4-week study-plan slot (see progress/study-plan.md).
+# `license_blocked = true` = needs Microsoft 365 E5 / Defender / Entra ID P2 / Purview licences the
+#   learner's Azure-subscription-only lab does not have -> portal tour + docs, no live lab.
+#   Initial guess per bullet; objective writers confirm against the docs and report corrections.
+# `high_risk` = heavy weight or highly confusable (automation rule vs playbook, AMA/DCR, retention
+#   tiers, analytics rule types, KQL).
+
+schema_version = 1
+exam_code = "SC-200"
+exam_title = "Microsoft Security Operations Analyst"
+certification = "Microsoft Certified: Security Operations Analyst Associate"
+study_guide_url = "https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-200"
+exam_page_url = "https://learn.microsoft.com/credentials/certifications/security-operations-analyst/"
+outline_captured = 2026-11-12
+outline_version = "Skills measured as of October 21, 2026"
+status = "live"
+total_planned_hours = 160
+
+# sample_weight = normalized midpoint of each domain's weight range; all three sum to 1.0.
+#   midpoints 42.5 / 37.5 / 22.5 (sum 102.5) normalized below.
+
+# ===========================================================================
+[[domains]]
+id = "D1"
+title = "Manage a security operations environment"
+weight_min = 40
+weight_max = 45
+sample_weight = 0.4146
+[[domains.subdomains]]
+id = "D1.1"
+title = "Configure automation for Microsoft Defender XDR and Microsoft Sentinel"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D1.1.1"
+text = "Configure email notifications in Microsoft Defender XDR, including incidents, actions, and threat analytics"
+prior_cert = "none"
+hours = 1.5
+week = 2
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.2"
+text = "Configure alert notifications in Microsoft Defender XDR, including tuning, suppression, and correlation"
+prior_cert = "none"
+hours = 2.5
+week = 2
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.3"
+text = "Configure Microsoft Defender for Endpoint advanced features"
+prior_cert = "none"
+hours = 2
+week = 2
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.4"
+text = "Configure rules settings in Microsoft Defender for Endpoint"
+prior_cert = "none"
+hours = 2
+week = 2
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.5"
+text = "Configure custom data collection in Microsoft Defender for Endpoint"
+prior_cert = "none"
+hours = 2
+week = 2
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.6"
+text = "Configure security policies for Microsoft Defender for Endpoint, including attack surface reduction (ASR) rules"
+prior_cert = "none"
+hours = 3
+week = 2
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.7"
+text = "Manage automated investigation and response capabilities in Microsoft Defender XDR"
+prior_cert = "none"
+hours = 3
+week = 2
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.8"
+text = "Configure automatic attack disruption in Microsoft Defender XDR"
+prior_cert = "none"
+hours = 2.5
+week = 2
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.9"
+text = "Configure and manage device groups, permissions, and automation levels in Microsoft Defender for Endpoint"
+prior_cert = "none"
+hours = 3
+week = 2
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.10"
+text = "Create and configure automation rules in Microsoft Sentinel"
+prior_cert = "none"
+hours = 3
+week = 2
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D1.1.11"
+text = "Create and configure Microsoft Sentinel playbooks"
+prior_cert = "none"
+hours = 3.5
+week = 2
+high_risk = true
+
+[[domains.subdomains]]
+id = "D1.2"
+title = "Configure the Microsoft Sentinel SIEM and platform"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D1.2.1"
+text = "Specify Microsoft Sentinel roles"
+prior_cert = "none"
+hours = 2
+week = 1
+
+[[domains.subdomains.objectives]]
+id = "D1.2.2"
+text = "Manage data retention for XDR and Microsoft Sentinel tables, including Analytics, Data lake, and XDR tiers"
+prior_cert = "none"
+hours = 3
+week = 1
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D1.2.3"
+text = "Create and configure Microsoft Sentinel workbooks"
+prior_cert = "none"
+hours = 2
+week = 1
+
+[[domains.subdomains.objectives]]
+id = "D1.2.4"
+text = "Optimize the Microsoft Sentinel platform, including SOC optimization recommendations"
+prior_cert = "none"
+hours = 2
+week = 1
+
+[[domains.subdomains]]
+id = "D1.3"
+title = "Ingest data into the Microsoft Sentinel SIEM and platform"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D1.3.1"
+text = "Select data connectors based on data source requirements, including Windows logs and security events"
+prior_cert = "none"
+hours = 2
+week = 1
+
+[[domains.subdomains.objectives]]
+id = "D1.3.2"
+text = "Configure collection of Windows Security events by using Windows Security Events via AMA, including data collection rules"
+prior_cert = "none"
+hours = 3
+week = 1
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D1.3.3"
+text = "Plan and configure collection of Windows Security events by using Windows Event Forwarding (WEF)"
+prior_cert = "none"
+hours = 2
+week = 1
+
+[[domains.subdomains.objectives]]
+id = "D1.3.4"
+text = "Plan and configure Syslog via AMA and Common Event Format (CEF) via AMA connectors"
+prior_cert = "none"
+hours = 3
+week = 1
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D1.3.5"
+text = "Configure collection of Azure activity logs by using Azure Policy and resource diagnostic settings"
+prior_cert = "none"
+hours = 2
+week = 1
+
+[[domains.subdomains.objectives]]
+id = "D1.3.6"
+text = "Ingest threat indicators into Microsoft Sentinel"
+prior_cert = "none"
+hours = 1.5
+week = 1
+
+[[domains.subdomains.objectives]]
+id = "D1.3.7"
+text = "Create custom log tables in the workspace to store ingested data"
+prior_cert = "none"
+hours = 1.5
+week = 1
+
+[[domains.subdomains]]
+id = "D1.4"
+title = "Configure detections"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D1.4.1"
+text = "Create custom detection rules by using Advanced Hunting in Microsoft Defender XDR"
+prior_cert = "none"
+hours = 3
+week = 2
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.4.2"
+text = "Manage custom detection rules in Microsoft Defender XDR"
+prior_cert = "none"
+hours = 1.5
+week = 2
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D1.4.3"
+text = "Configure and manage analytics rules in Microsoft Sentinel SIEM, including scheduled, near-real time (NRT), threat intelligence, and machine learning"
+prior_cert = "none"
+hours = 4
+week = 2
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D1.4.4"
+text = "Analyze attack vector coverage by using the MITRE ATT&CK matrix"
+prior_cert = "none"
+hours = 1.5
+week = 2
+
+[[domains.subdomains.objectives]]
+id = "D1.4.5"
+text = "Configure anomalies in Microsoft Sentinel"
+prior_cert = "none"
+hours = 2
+week = 2
+
+
+# ===========================================================================
+[[domains]]
+id = "D2"
+title = "Respond to security incidents"
+weight_min = 35
+weight_max = 40
+sample_weight = 0.3659
+[[domains.subdomains]]
+id = "D2.1"
+title = "Respond to alerts and incidents in Microsoft Defender XDR"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D2.1.1"
+text = "Investigate and remediate threats by using Microsoft Defender for Office 365, including automatic attack disruption"
+prior_cert = "none"
+hours = 3
+week = 3
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.2"
+text = "Investigate and remediate threats or compromised entities identified by Microsoft Purview"
+prior_cert = "none"
+hours = 2.5
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.3"
+text = "Investigate and remediate alerts and incidents identified by Microsoft Defender for Cloud workload protections"
+prior_cert = "none"
+hours = 2.5
+week = 3
+
+[[domains.subdomains.objectives]]
+id = "D2.1.4"
+text = "Investigate and remediate security risks identified by Microsoft Defender for Cloud Apps"
+prior_cert = "none"
+hours = 2.5
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.5"
+text = "Investigate and remediate compromised identities that are identified by Microsoft Entra ID"
+prior_cert = "none"
+hours = 2.5
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.6"
+text = "Investigate and remediate security alerts from Microsoft Defender for Identity"
+prior_cert = "none"
+hours = 2.5
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.7"
+text = "Investigate and remediate alerts and incidents identified by Microsoft Sentinel"
+prior_cert = "none"
+hours = 3
+week = 3
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.8"
+text = "Investigate incidents by using agentic AI, including embedded Microsoft Security Copilot"
+prior_cert = "none"
+hours = 2
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.9"
+text = "Investigate complex attacks, such as multi-stage, multi-domain, and lateral movement"
+prior_cert = "none"
+hours = 3
+week = 3
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.1.10"
+text = "Manage security incidents by using case management"
+prior_cert = "none"
+hours = 2
+week = 3
+
+[[domains.subdomains]]
+id = "D2.2"
+title = "Respond to alerts and incidents in Microsoft Defender for Endpoint"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D2.2.1"
+text = "Investigate device timelines"
+prior_cert = "none"
+hours = 2
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.2.2"
+text = "Perform actions on the device, including live response and collecting investigation packages"
+prior_cert = "none"
+hours = 3
+week = 3
+high_risk = true
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.2.3"
+text = "Perform evidence and entity investigation"
+prior_cert = "none"
+hours = 2
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.2.4"
+text = "Investigate and remediate incidents identified by automatic attack disruption"
+prior_cert = "none"
+hours = 1.5
+week = 3
+license_blocked = true
+
+[[domains.subdomains]]
+id = "D2.3"
+title = "Investigate Microsoft 365 activities to identify threats"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D2.3.1"
+text = "Investigate threats by using Microsoft Purview Audit"
+prior_cert = "none"
+hours = 2.5
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.3.2"
+text = "Investigate threats by using Content search in Microsoft Purview eDiscovery"
+prior_cert = "none"
+hours = 2
+week = 3
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D2.3.3"
+text = "Investigate threats by using Microsoft Graph activity logs"
+prior_cert = "none"
+hours = 1.5
+week = 3
+license_blocked = true
+
+
+# ===========================================================================
+[[domains]]
+id = "D3"
+title = "Perform threat hunting"
+weight_min = 20
+weight_max = 25
+sample_weight = 0.2195
+[[domains.subdomains]]
+id = "D3.1"
+title = "Detect threats by using Microsoft Defender XDR"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D3.1.1"
+text = "Identify the appropriate table to use in a KQL query"
+prior_cert = "none"
+hours = 2.5
+week = 4
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D3.1.2"
+text = "Identify threats by using Kusto Query Language (KQL)"
+prior_cert = "none"
+hours = 4
+week = 4
+high_risk = true
+
+[[domains.subdomains.objectives]]
+id = "D3.1.3"
+text = "Create Advanced Hunting queries"
+prior_cert = "none"
+hours = 3
+week = 4
+
+[[domains.subdomains.objectives]]
+id = "D3.1.4"
+text = "Interpret threat analytics in Microsoft Defender XDR"
+prior_cert = "none"
+hours = 1.5
+week = 4
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D3.1.5"
+text = "Create hunting graphs, including blast radius"
+prior_cert = "none"
+hours = 1.5
+week = 4
+license_blocked = true
+
+[[domains.subdomains.objectives]]
+id = "D3.1.6"
+text = "Analyze relationships between entities by using Sentinel Graph"
+prior_cert = "none"
+hours = 1.5
+week = 4
+
+[[domains.subdomains]]
+id = "D3.2"
+title = "Detect threats by using the Microsoft Sentinel platform"
+learn_path = ""
+[[domains.subdomains.objectives]]
+id = "D3.2.1"
+text = "Create and monitor hunting queries"
+prior_cert = "none"
+hours = 2
+week = 4
+
+[[domains.subdomains.objectives]]
+id = "D3.2.2"
+text = "Create and manage KQL jobs in Data lake"
+prior_cert = "none"
+hours = 2
+week = 4
+
+[[domains.subdomains.objectives]]
+id = "D3.2.3"
+text = "Create and manage Summary rule tables for querying"
+prior_cert = "none"
+hours = 2
+week = 4
+
+[[domains.subdomains.objectives]]
+id = "D3.2.4"
+text = "Hunt for threats by using Notebooks, including connection to the Sentinel MCP Server"
+prior_cert = "none"
+hours = 2
+week = 4

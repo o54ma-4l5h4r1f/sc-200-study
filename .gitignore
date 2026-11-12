@@ -1,0 +1,29 @@
+# Generated output — rebuild with `python3 build.py`
+site/
+
+# Personal progress data
+progress/attempts.jsonl
+progress/progress-export.json
+progress/notes.json
+
+# Lab notes may contain tenant-specific detail
+content/notes/*
+!content/notes/.gitkeep
+
+__pycache__/
+*.pyc
+.DS_Store
+
+# Cached Microsoft Learn images — redistributing them publicly is a copyright issue;
+# kept local for offline file:// use, re-fetch with `python3 build.py --fetch-images`
+assets/img/cache/
+
+# Personal study state (plan, attempts, notes, exports)
+progress/*
+!progress/.gitkeep
+
+# Secrets / env, just in case
+.env
+.env.*
+*.pem
+*.key

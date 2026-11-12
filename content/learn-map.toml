@@ -1,0 +1,4487 @@
+# SC-200 official Microsoft Learn training map.
+#
+# The join between the skills-measured outline (content/domains.toml) and the official training
+# curriculum. Each unit maps to the blueprint bullet(s) it serves. The mismatches matter: bullets with
+# no unit are written from product docs, off-blueprint units are Skip-section material.
+#
+# CAPTURED 2026-11-12 via the Microsoft Learn MCP (microsoft_docs_fetch): all 10 SC-200 learning
+# paths, 59 modules, 447 units. Every module page was fetched for its live unit list and
+# Microsoft's real unit slugs; spot-checked unit bodies where a newer bullet might be carried
+# (advanced hunting, configure logs, Defender portal settings, Windows hosts planning, DCR, notebooks).
+# Blueprint = "Skills measured as of October 21, 2026" (54 bullets).
+#
+# MISMATCHES (the reason this file exists):
+#
+#   Bullets with NO training unit (9) -> write entirely from product docs:
+#     D1.1.5
+#     D1.1.8
+#     D1.2.4
+#     D1.3.7
+#     D2.1.10
+#     D2.2.4
+#     D2.3.3
+#     D3.2.2
+#     D3.2.3
+#
+#   Bullets carried by a SINGLE unit (9) -> thin; supplement from docs:
+#     D1.2.1  <- create-manage-azure-sentinel-workspaces#5
+#     D1.3.3  <- connect-windows-hosts-to-azure-sentinel#2
+#     D1.3.5  <- connect-microsoft-services-to-azure-sentinel#6
+#     D1.4.1  <- mitigate-incidents-microsoft-365-defender#8
+#     D1.4.2  <- mitigate-incidents-microsoft-365-defender#8
+#     D1.4.4  <- what-is-threat-hunting-azure-sentinel#4 (slug 3a-explore-mitre-att-ck)
+#     D3.1.4  <- mitigate-incidents-microsoft-365-defender#11
+#     D3.1.5  <- mitigate-incidents-microsoft-365-defender#8
+#     D3.1.6  <- mitigate-incidents-microsoft-365-defender#8
+#
+#   Off-blueprint units: 64 (off_blueprint = true; Skip-section fuel). Whole modules that are
+#   off-blueprint: vulnerability management, Defender for Cloud onboarding (Azure + non-Azure),
+#   CSPM, watchlists, and the generative-AI fundamentals module (exam_native = false).
+#   license_blocked exercise units: 4 (Entra ID P2 / Microsoft 365 E5 Purview).
+#
+#   Partial coverage worth knowing (bullet is mapped, but the newest half of it is NOT taught):
+#     D3.2.4  notebooks taught (Kqlmagic/msticpy) - Sentinel MCP Server connection is docs-only.
+#     D1.2.2  tiers taught in configure-logs; KQL jobs / summary rules only named in passing.
+#     D3.1.5/D3.1.6  only the Hunting graph (Preview) section of one advanced-hunting unit.
+#     D1.3.3  WEF/WEC is one paragraph in the Windows hosts planning unit.
+#     D2.1.10 Purview IRM 'cases' exist in P2 but are NOT Defender case management.
+#
+# kind: intro | concept | exercise | assessment | summary   (only concept/exercise "teach")
+# `n` is this map's own contiguous 1..N index per module (build.py validates contiguity); the slug
+# keeps Microsoft's real unit slug even where their published numbering has gaps or letters (2a, 8a).
+# off_blueprint = true: teaches something the exam never asks for. license_blocked = true: exercise
+# needs a licence the learner lacks (Azure subscription only).
+#
+# Regenerate/verify with:  python3 build.py --check-learn-map
+
+schema_version = 1
+captured = 2026-11-12
+unit_total = 447
+
+# ===========================================================================
+# PATHS
+# ===========================================================================
+
+[[paths]]
+id = "P1"
+domain = "D2"
+title = "Mitigate threats using Microsoft Defender XDR"
+url = "https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-microsoft-365-defender/"
+modules = 6
+
+[[paths]]
+id = "P2"
+domain = "D2"
+title = "Mitigate threats using Microsoft Purview"
+url = "https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-microsoft-purview/"
+modules = 4
+
+[[paths]]
+id = "P3"
+domain = "D1"
+title = "Mitigate threats using Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-microsoft-defender-for-endpoint/"
+modules = 9
+
+[[paths]]
+id = "P4"
+domain = "D2"
+title = "Mitigate threats using Microsoft Defender for Cloud"
+url = "https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-azure-defender/"
+modules = 6
+
+[[paths]]
+id = "P5"
+domain = "D2"
+title = "Mitigate threats using Microsoft Security Copilot"
+url = "https://learn.microsoft.com/training/paths/sc-200-mitigate-threats-using-microsoft-copilot-for-security/"
+modules = 5
+
+[[paths]]
+id = "P6"
+domain = "D3"
+title = "Create queries for Microsoft Sentinel using Kusto Query Language (KQL)"
+url = "https://learn.microsoft.com/training/paths/sc-200-utilize-kql-for-azure-sentinel/"
+modules = 4
+
+[[paths]]
+id = "P7"
+domain = "D1"
+title = "Configure your Microsoft Sentinel environment"
+url = "https://learn.microsoft.com/training/paths/sc-200-configure-azure-sentinel-environment/"
+modules = 6
+
+[[paths]]
+id = "P8"
+domain = "D1"
+title = "Connect logs to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/paths/sc-200-connect-logs-to-azure-sentinel/"
+modules = 7
+
+[[paths]]
+id = "P9"
+domain = "D1"
+title = "Create detections and perform investigations using Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/paths/sc-200-create-detections-perform-investigations-azure-sentinel/"
+modules = 8
+
+[[paths]]
+id = "P10"
+domain = "D3"
+title = "Perform threat hunting in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/paths/sc-200-perform-threat-hunting-azure-sentinel/"
+modules = 4
+
+# ===========================================================================
+# MODULES
+# ===========================================================================
+
+# --- P1 ---
+
+[[modules]]
+slug = "introduction-microsoft-365-threat-protection"
+path = "P1"
+title = "Introduction to Microsoft Defender XDR threat protection"
+url = "https://learn.microsoft.com/training/modules/introduction-microsoft-365-threat-protection/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "mitigate-incidents-microsoft-365-defender"
+path = "P1"
+title = "Mitigate incidents using Microsoft Defender"
+url = "https://learn.microsoft.com/training/modules/mitigate-incidents-microsoft-365-defender/"
+unit_count = 15
+level = "Intermediate"
+
+[[modules]]
+slug = "m365-threat-remediate"
+path = "P1"
+title = "Remediate threats using Microsoft Defender"
+url = "https://learn.microsoft.com/training/modules/m365-threat-remediate/"
+unit_count = 6
+level = "Intermediate"
+
+[[modules]]
+slug = "manage-azure-active-directory-identity-protection"
+path = "P1"
+title = "Manage Microsoft Entra Identity Protection"
+url = "https://learn.microsoft.com/training/modules/manage-azure-active-directory-identity-protection/"
+unit_count = 11
+level = "Advanced"
+note = "Written for SC-300/identity admins; level Advanced. Only the risk-investigation units serve SC-200."
+
+[[modules]]
+slug = "m365-threat-safeguard"
+path = "P1"
+title = "Safeguard your environment with Microsoft Defender for Identity"
+url = "https://learn.microsoft.com/training/modules/m365-threat-safeguard/"
+unit_count = 5
+level = "Intermediate"
+
+[[modules]]
+slug = "microsoft-cloud-app-security"
+path = "P1"
+title = "Secure your cloud apps and services with Microsoft Defender for Cloud Apps"
+url = "https://learn.microsoft.com/training/modules/microsoft-cloud-app-security/"
+unit_count = 9
+level = "Beginner"
+
+# --- P2 ---
+
+[[modules]]
+slug = "purview-data-loss-prevention-alerts"
+path = "P2"
+title = "Investigate and respond to Microsoft Purview Data Loss Prevention alerts"
+url = "https://learn.microsoft.com/training/modules/purview-data-loss-prevention-alerts/"
+unit_count = 11
+level = "Intermediate"
+
+[[modules]]
+slug = "purview-insider-risk-investigate-alerts"
+path = "P2"
+title = "Investigate insider risk alerts and related activity"
+url = "https://learn.microsoft.com/training/modules/purview-insider-risk-investigate-alerts/"
+unit_count = 13
+level = "Intermediate"
+
+[[modules]]
+slug = "purview-audit-search-investigate"
+path = "P2"
+title = "Conduct investigations with Microsoft Purview Audit"
+url = "https://learn.microsoft.com/training/modules/purview-audit-search-investigate/"
+unit_count = 10
+level = "Intermediate"
+
+[[modules]]
+slug = "purview-ediscovery-search"
+path = "P2"
+title = "Search for content with Microsoft Purview eDiscovery"
+url = "https://learn.microsoft.com/training/modules/purview-ediscovery-search/"
+unit_count = 8
+level = "Intermediate"
+
+# --- P3 ---
+
+[[modules]]
+slug = "m365-security-threat-protect"
+path = "P3"
+title = "Protect against threats with Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/m365-security-threat-protect/"
+unit_count = 4
+level = "Intermediate"
+
+[[modules]]
+slug = "deploy-microsoft-defender-for-endpoints-environment"
+path = "P3"
+title = "Deploy the Microsoft Defender for Endpoint environment"
+url = "https://learn.microsoft.com/training/modules/deploy-microsoft-defender-for-endpoints-environment/"
+unit_count = 10
+level = "Intermediate"
+
+[[modules]]
+slug = "implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint"
+path = "P3"
+title = "Implement Windows security enhancements with Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint/"
+unit_count = 5
+level = "Intermediate"
+
+[[modules]]
+slug = "perform-device-investigations-microsoft-defender-for-endpoints"
+path = "P3"
+title = "Perform device investigations in Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/perform-device-investigations-microsoft-defender-for-endpoints/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "perform-actions-device-microsoft-defender-for-endpoint"
+path = "P3"
+title = "Perform actions on a device using Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/perform-actions-device-microsoft-defender-for-endpoint/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+path = "P3"
+title = "Perform evidence and entities investigations using Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/perform-evidence-entities-investigations-microsoft-defender-for-endpoint/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "configure-manage-automation-microsoft-defender-for-endpoint"
+path = "P3"
+title = "Configure and manage automation using Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/configure-manage-automation-microsoft-defender-for-endpoint/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+path = "P3"
+title = "Configure for alerts and detections in Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/configure-settings-for-alerts-detections-microsoft-defender-for-endpoint/"
+unit_count = 7
+level = "Intermediate"
+note = "Microsoft's published unit slugs skip 6 (5 -> 7); `n` here is contiguous."
+
+[[modules]]
+slug = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+path = "P3"
+title = "Utilize Vulnerability Management in Microsoft Defender for Endpoint"
+url = "https://learn.microsoft.com/training/modules/use-threat-vulnerability-management-microsoft-defender-for-endpoint/"
+unit_count = 6
+level = "Intermediate"
+note = "Whole module off-blueprint (Defender Vulnerability Management). Published slugs skip 5."
+
+# --- P4 ---
+
+[[modules]]
+slug = "what-is-azure-defender"
+path = "P4"
+title = "Plan for cloud workload protections using Microsoft Defender for Cloud"
+url = "https://learn.microsoft.com/training/modules/what-is-azure-defender/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-azure-assets-to-azure-defender"
+path = "P4"
+title = "Connect Azure assets to Microsoft Defender for Cloud"
+url = "https://learn.microsoft.com/training/modules/connect-azure-assets-to-azure-defender/"
+unit_count = 6
+level = "Intermediate"
+note = "Whole module off-blueprint (onboarding)."
+
+[[modules]]
+slug = "connect-non-azure-machines-to-azure-defender"
+path = "P4"
+title = "Connect non-Azure resources to Microsoft Defender for Cloud"
+url = "https://learn.microsoft.com/training/modules/connect-non-azure-machines-to-azure-defender/"
+unit_count = 7
+level = "Intermediate"
+note = "Whole module off-blueprint (Arc/AWS/GCP onboarding)."
+
+[[modules]]
+slug = "manage-cloud-security-posture-management"
+path = "P4"
+title = "Manage your cloud security posture management"
+url = "https://learn.microsoft.com/training/modules/manage-cloud-security-posture-management/"
+unit_count = 7
+level = "Intermediate"
+note = "Whole module off-blueprint (CSPM)."
+
+[[modules]]
+slug = "understand-azure-defender-cloud-workload-protection"
+path = "P4"
+title = "Explain cloud workload protections in Microsoft Defender for Cloud"
+url = "https://learn.microsoft.com/training/modules/understand-azure-defender-cloud-workload-protection/"
+unit_count = 13
+level = "Intermediate"
+note = "Published slugs skip 10; module header says 13 units but 12 are listed - `n` follows the live list."
+
+[[modules]]
+slug = "remediate-azure-defender-security-alerts"
+path = "P4"
+title = "Remediate security alerts using Microsoft Defender for Cloud"
+url = "https://learn.microsoft.com/training/modules/remediate-azure-defender-security-alerts/"
+unit_count = 8
+level = "Intermediate"
+
+# --- P5 ---
+
+[[modules]]
+slug = "fundamentals-generative-ai"
+path = "P5"
+title = "Introduction to generative AI and agents"
+url = "https://learn.microsoft.com/training/modules/fundamentals-generative-ai/"
+unit_count = 7
+level = "Beginner"
+exam_native = false
+note = "AI-900-style fundamentals module (Microsoft Foundry); not written for SC-200."
+
+[[modules]]
+slug = "security-copilot-getting-started"
+path = "P5"
+title = "Describe Microsoft Security Copilot"
+url = "https://learn.microsoft.com/training/modules/security-copilot-getting-started/"
+unit_count = 8
+level = "Beginner"
+
+[[modules]]
+slug = "security-copilot-describe-core-features"
+path = "P5"
+title = "Describe the core features of Microsoft Security Copilot"
+url = "https://learn.microsoft.com/training/modules/security-copilot-describe-core-features/"
+unit_count = 9
+level = "Beginner"
+
+[[modules]]
+slug = "security-copilot-embedded-experiences"
+path = "P5"
+title = "Describe the embedded experiences of Microsoft Security Copilot"
+url = "https://learn.microsoft.com/training/modules/security-copilot-embedded-experiences/"
+unit_count = 8
+level = "Beginner"
+
+[[modules]]
+slug = "security-copilot-interactive-guides"
+path = "P5"
+title = "Experience Security Copilot through guided simulations"
+url = "https://learn.microsoft.com/training/modules/security-copilot-interactive-guides/"
+unit_count = 11
+level = "Beginner"
+note = "Guided click-through simulations: no Security Copilot capacity needed, so not license_blocked."
+
+# --- P6 ---
+
+[[modules]]
+slug = "construct-kusto-query-language-statements"
+path = "P6"
+title = "Construct KQL statements for Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/construct-kusto-query-language-statements/"
+unit_count = 10
+level = "Intermediate"
+
+[[modules]]
+slug = "analyze-results-kusto-query-language"
+path = "P6"
+title = "Analyze query results using KQL"
+url = "https://learn.microsoft.com/training/modules/analyze-results-kusto-query-language/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "build-multi-table-statements-kusto-query-language"
+path = "P6"
+title = "Build multi-table statements using KQL"
+url = "https://learn.microsoft.com/training/modules/build-multi-table-statements-kusto-query-language/"
+unit_count = 5
+level = "Intermediate"
+
+[[modules]]
+slug = "work-with-data-kusto-query-language"
+path = "P6"
+title = "Work with data in Microsoft Sentinel using Kusto Query Language"
+url = "https://learn.microsoft.com/training/modules/work-with-data-kusto-query-language/"
+unit_count = 7
+level = "Intermediate"
+
+# --- P7 ---
+
+[[modules]]
+slug = "intro-to-azure-sentinel"
+path = "P7"
+title = "Introduction to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/intro-to-azure-sentinel/"
+unit_count = 6
+level = "Intermediate"
+
+[[modules]]
+slug = "create-manage-azure-sentinel-workspaces"
+path = "P7"
+title = "Create and manage Microsoft Sentinel workspaces"
+url = "https://learn.microsoft.com/training/modules/create-manage-azure-sentinel-workspaces/"
+unit_count = 9
+level = "Intermediate"
+
+[[modules]]
+slug = "query-logs-azure-sentinel"
+path = "P7"
+title = "Query logs in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/query-logs-azure-sentinel/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "use-watchlists-azure-sentinel"
+path = "P7"
+title = "Use watchlists in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/use-watchlists-azure-sentinel/"
+unit_count = 6
+level = "Intermediate"
+note = "Whole module off-blueprint under the Oct 2026 outline (watchlists no longer named)."
+
+[[modules]]
+slug = "utilize-threat-intelligence-azure-sentinel"
+path = "P7"
+title = "Utilize threat intelligence in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/utilize-threat-intelligence-azure-sentinel/"
+unit_count = 6
+level = "Intermediate"
+
+[[modules]]
+slug = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+path = "P7"
+title = "Integrate Microsoft Defender XDR with Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/integrate-microsoft-defender-xdr-with-microsoft-sentinel/"
+unit_count = 8
+level = "Intermediate"
+note = "Published slugs mix numbered (1-5) and unnumbered (exercise, assessment, summary)."
+
+# --- P8 ---
+
+[[modules]]
+slug = "connect-data-to-azure-sentinel-with-data-connectors"
+path = "P8"
+title = "Connect data to Microsoft Sentinel using data connectors"
+url = "https://learn.microsoft.com/training/modules/connect-data-to-azure-sentinel-with-data-connectors/"
+unit_count = 6
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-microsoft-services-to-azure-sentinel"
+path = "P8"
+title = "Connect Microsoft services to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/connect-microsoft-services-to-azure-sentinel/"
+unit_count = 8
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-microsoft-defender-365-to-azure-sentinel"
+path = "P8"
+title = "Connect Microsoft Defender XDR to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/connect-microsoft-defender-365-to-azure-sentinel/"
+unit_count = 8
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-windows-hosts-to-azure-sentinel"
+path = "P8"
+title = "Connect Windows hosts to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/connect-windows-hosts-to-azure-sentinel/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-common-event-format-logs-to-azure-sentinel"
+path = "P8"
+title = "Connect Common Event Format logs to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/connect-common-event-format-logs-to-azure-sentinel/"
+unit_count = 5
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-syslog-data-sources-to-azure-sentinel"
+path = "P8"
+title = "Connect syslog data sources to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/connect-syslog-data-sources-to-azure-sentinel/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "connect-threat-indicators-to-azure-sentinel"
+path = "P8"
+title = "Connect threat indicators to Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/connect-threat-indicators-to-azure-sentinel/"
+unit_count = 8
+level = "Intermediate"
+
+# --- P9 ---
+
+[[modules]]
+slug = "analyze-data-in-sentinel"
+path = "P9"
+title = "Threat detection with Microsoft Sentinel analytics"
+url = "https://learn.microsoft.com/training/modules/analyze-data-in-sentinel/"
+unit_count = 9
+level = "Intermediate"
+
+[[modules]]
+slug = "automation-microsoft-sentinel"
+path = "P9"
+title = "Automation in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/automation-microsoft-sentinel/"
+unit_count = 5
+level = "Intermediate"
+
+[[modules]]
+slug = "threat-response-sentinel-playbooks"
+path = "P9"
+title = "Threat response with Microsoft Sentinel playbooks"
+url = "https://learn.microsoft.com/training/modules/threat-response-sentinel-playbooks/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "incident-management-sentinel"
+path = "P9"
+title = "Security incident management in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/incident-management-sentinel/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "use-entity-behavior-analytics-azure-sentinel"
+path = "P9"
+title = "Identify threats with Behavioral Analytics"
+url = "https://learn.microsoft.com/training/modules/use-entity-behavior-analytics-azure-sentinel/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "data-normalization-microsoft-sentinel"
+path = "P9"
+title = "Data normalization in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/data-normalization-microsoft-sentinel/"
+unit_count = 8
+level = "Intermediate"
+
+[[modules]]
+slug = "query-data-sentinel"
+path = "P9"
+title = "Query, visualize, and monitor data in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/query-data-sentinel/"
+unit_count = 8
+level = "Intermediate"
+
+[[modules]]
+slug = "manage-content-microsoft-sentinel"
+path = "P9"
+title = "Manage content in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/manage-content-microsoft-sentinel/"
+unit_count = 5
+level = "Intermediate"
+
+# --- P10 ---
+
+[[modules]]
+slug = "what-is-threat-hunting-azure-sentinel"
+path = "P10"
+title = "Explain threat hunting concepts in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/what-is-threat-hunting-azure-sentinel/"
+unit_count = 6
+level = "Intermediate"
+
+[[modules]]
+slug = "hunt-threats-sentinel"
+path = "P10"
+title = "Threat hunting with Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/hunt-threats-sentinel/"
+unit_count = 7
+level = "Intermediate"
+
+[[modules]]
+slug = "use-search-jobs-microsoft-sentinel"
+path = "P10"
+title = "Use Search jobs in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/use-search-jobs-microsoft-sentinel/"
+unit_count = 5
+level = "Intermediate"
+
+[[modules]]
+slug = "perform-threat-hunting-sentinel-with-notebooks"
+path = "P10"
+title = "Hunt for threats using notebooks in Microsoft Sentinel"
+url = "https://learn.microsoft.com/training/modules/perform-threat-hunting-sentinel-with-notebooks/"
+unit_count = 7
+level = "Intermediate"
+
+# ===========================================================================
+# UNITS
+# ===========================================================================
+
+# --- introduction-microsoft-365-threat-protection (7) ---
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 2
+slug = "2-explore-extended-detection-response-use-cases"
+title = "Explore Extended Detection & Response (XDR) response use cases"
+kind = "concept"
+objectives = ["D2.1.9"]
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 3
+slug = "3-understand-defender-security-operations-center"
+title = "Understand Microsoft Defender XDR in a Security Operations Center (SOC)"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "SOC-org framing; no bullet asks for it"
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 4
+slug = "4-explore-microsoft-security-graph"
+title = "Explore Microsoft Security Graph"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Graph API background; not the Graph activity logs bullet (D2.3.3)"
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 5
+slug = "5-investigate-security-incident-defender"
+title = "Investigate security incidents in Microsoft Defender XDR"
+kind = "concept"
+objectives = ["D2.1.9"]
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "introduction-microsoft-365-threat-protection"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- mitigate-incidents-microsoft-365-defender (15) ---
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 2
+slug = "2-use-microsoft-security-center-portal"
+title = "Use the Microsoft Defender portal"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "portal tour"
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 3
+slug = "3-manage-incidents"
+title = "Manage incidents"
+kind = "concept"
+objectives = ["D2.1.9"]
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 4
+slug = "4-investigate-incidents"
+title = "Investigate incidents"
+kind = "concept"
+objectives = ["D2.1.9"]
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 5
+slug = "5-manage-investigate-alerts"
+title = "Manage and investigate alerts"
+kind = "concept"
+objectives = ["D1.1.2"]
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 6
+slug = "6-manage-automated-investigations"
+title = "Manage automated investigations"
+kind = "concept"
+objectives = ["D1.1.7"]
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 7
+slug = "7-use-action-center"
+title = "Use the action center"
+kind = "concept"
+objectives = ["D1.1.7"]
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 8
+slug = "8-explore-advanced-hunting"
+title = "Explore advanced hunting"
+kind = "concept"
+objectives = ["D1.4.1", "D1.4.2", "D3.1.1", "D3.1.3", "D3.1.5", "D3.1.6"]
+thin_coverage = true
+note = "Also carries custom detections and the Hunting graph (Preview). Outdated vs product docs: says custom detections MUST return Timestamp/DeviceId/ReportId and allow 100 alerts per run; current docs say recommended columns and 150 alerts. Its 4 screenshots are all Hunting graph (D3.1.5). Verified 2026-11-12. Calls the hunting-graph tab 'New hunt' (product: 'New graph') and still labels it Preview."
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 9
+slug = "9-investigate-azure-ad-sign-in-logs"
+title = "Investigate Microsoft Entra sign-in logs"
+kind = "concept"
+objectives = ["D2.1.5"]
+note = "Stale: uses AADSignInEventsBeta, replaced by EntraIdSignInEvents."
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 10
+slug = "10-understand-microsoft-secure-score"
+title = "Understand Microsoft Secure Score"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "posture metric; no bullet"
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 11
+slug = "11-analyze-threat-analytics"
+title = "Analyze threat analytics with the Security Copilot Threat Intelligence Briefing Agent"
+kind = "concept"
+note = "Teaches only the Threat Intelligence Briefing Agent; threat analytics tabs come from product docs."
+objectives = ["D3.1.4", "D2.1.8"]
+thin_coverage = true
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 12
+slug = "12-analyze-reports"
+title = "Analyze reports"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 13
+slug = "13-configure-microsoft-365-defender-portal"
+title = "Configure the Microsoft Defender portal"
+kind = "concept"
+objectives = ["D1.1.1"]
+note = "Email notification rules. Training names two types; the portal has three tabs: Incidents, Actions, Threat analytics. Verified 2026-11-12."
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 14
+slug = "14-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "mitigate-incidents-microsoft-365-defender"
+n = 15
+slug = "15-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- m365-threat-remediate (6) ---
+
+[[units]]
+module = "m365-threat-remediate"
+n = 1
+slug = "introduction"
+title = "Introduction to Microsoft Defender for Office 365"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "m365-threat-remediate"
+n = 2
+slug = "automate-investigate-remediate"
+title = "Automate, investigate, and remediate"
+kind = "concept"
+objectives = ["D2.1.1", "D1.1.7"]
+note = "MDO AIR; does NOT cover automatic attack disruption (verified 2026-11-12)"
+
+[[units]]
+module = "m365-threat-remediate"
+n = 3
+slug = "configure-protect-detect"
+title = "Configure, protect, and detect"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Safe Attachments/Safe Links/anti-phishing policy config; the bullet is investigate/remediate"
+
+[[units]]
+module = "m365-threat-remediate"
+n = 4
+slug = "phishing-triage-agent"
+title = "Microsoft Security Copilot Phishing Triage Agent in Microsoft Defender"
+kind = "concept"
+objectives = ["D2.1.1", "D2.1.8"]
+
+[[units]]
+module = "m365-threat-remediate"
+n = 5
+slug = "simulate-attacks"
+title = "Simulate attacks"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Attack simulation training; no bullet"
+
+[[units]]
+module = "m365-threat-remediate"
+n = 6
+slug = "summary-knowledge-check"
+title = "Summary and knowledge check"
+kind = "summary"
+objectives = []
+
+# --- manage-azure-active-directory-identity-protection (11) ---
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 2
+slug = "2-review-identity-protection-basics"
+title = "Review identity protection basics"
+kind = "concept"
+objectives = ["D2.1.5"]
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 3
+slug = "3-implement-manage-user-risk-policy"
+title = "Implement and manage user risk policy"
+kind = "concept"
+objectives = ["D2.1.5"]
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 4
+slug = "4-exercise-enable-sign-risk-policy"
+title = "Exercise enable sign-in risk policy"
+kind = "exercise"
+objectives = ["D2.1.5"]
+license_blocked = true
+note = "needs Entra ID P2 Stale: teaches the legacy ID Protection risk policies, retired 1 Oct 2026 (now Conditional Access risk policies)."
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 5
+slug = "5-exercise-configure-multi-factor-authentication-registration-policy"
+title = "Exercise configure Microsoft Entra multifactor authentication registration policy"
+kind = "exercise"
+objectives = []
+off_blueprint = true
+license_blocked = true
+note = "MFA registration policy config is SC-300 territory; needs Entra ID P2"
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 6
+slug = "6-monitor-investigate-remediate-elevated-risky-users"
+title = "Monitor, investigate, and remediate elevated risky users"
+kind = "concept"
+objectives = ["D2.1.5"]
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 7
+slug = "7-implement-security-workload-identities"
+title = "Implement security for workload identities"
+kind = "concept"
+objectives = ["D2.1.5"]
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 8
+slug = "8-explore-microsoft-defender-identity"
+title = "Explore Microsoft Defender for Identity"
+kind = "concept"
+objectives = ["D2.1.6"]
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 9
+slug = "8a-identity-risk-management-agent"
+title = "Explore the Identity Risk Management Agent"
+kind = "concept"
+objectives = ["D2.1.5", "D2.1.8"]
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 10
+slug = "9-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "manage-azure-active-directory-identity-protection"
+n = 11
+slug = "10-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- m365-threat-safeguard (5) ---
+
+[[units]]
+module = "m365-threat-safeguard"
+n = 1
+slug = "introduction"
+title = "Introduction to Microsoft Defender for Identity"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "m365-threat-safeguard"
+n = 2
+slug = "configure-sensors"
+title = "Configure Microsoft Defender for Identity sensors"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "sensor deployment; no bullet"
+
+[[units]]
+module = "m365-threat-safeguard"
+n = 3
+slug = "review-compromised-accounts"
+title = "Review compromised accounts or data"
+kind = "concept"
+objectives = ["D2.1.6", "D2.1.9"]
+
+[[units]]
+module = "m365-threat-safeguard"
+n = 4
+slug = "integrate-microsoft-tools"
+title = "Integrate with other Microsoft tools"
+kind = "concept"
+objectives = ["D2.1.6"]
+
+[[units]]
+module = "m365-threat-safeguard"
+n = 5
+slug = "summary-knowledge-check"
+title = "Summary and knowledge check"
+kind = "summary"
+objectives = []
+
+# --- microsoft-cloud-app-security (9) ---
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 1
+slug = "introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 2
+slug = "cloud-app-security-framework"
+title = "Understand the Defender for Cloud Apps Framework"
+kind = "concept"
+objectives = ["D2.1.4"]
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 3
+slug = "cloud-discovery"
+title = "Explore your cloud apps with Cloud Discovery"
+kind = "concept"
+objectives = ["D2.1.4"]
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 4
+slug = "conditional-access-app-control"
+title = "Protect your data and apps with Conditional Access App Control"
+kind = "concept"
+objectives = ["D2.1.4"]
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 5
+slug = "walkthrough"
+title = "Walk through discovery and access control with Microsoft Defender for Cloud Apps"
+kind = "concept"
+objectives = ["D2.1.4"]
+note = "Video-only; adds nothing beyond the screens on D2.1.4."
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 6
+slug = "classify-protect-sensitive-information"
+title = "Classify and protect sensitive information"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "information protection config; no bullet"
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 7
+slug = "detect-threats"
+title = "Detect Threats"
+kind = "concept"
+objectives = ["D2.1.4"]
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 8
+slug = "knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "microsoft-cloud-app-security"
+n = 9
+slug = "summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- purview-data-loss-prevention-alerts (11) ---
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 1
+slug = "introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 2
+slug = "understand-data-loss-prevention-alerts"
+title = "Understand data loss prevention (DLP) alerts"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 3
+slug = "data-loss-prevention-alert-lifecycle"
+title = "Understand the DLP alert lifecycle"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 4
+slug = "configure-data-loss-prevention-alert-generation"
+title = "Configure DLP policies to generate alerts"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "DLP policy authoring; the bullet is investigate/remediate"
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 5
+slug = "investigate-alerts-purview"
+title = "Investigate DLP alerts in Microsoft Purview"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 6
+slug = "investigate-alerts-defender"
+title = "Investigate DLP alerts in Microsoft Defender XDR"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 7
+slug = "investigate-alerts-security-copilot-agents"
+title = "Investigate DLP alerts with Security Copilot and AI agents"
+kind = "concept"
+objectives = ["D2.1.2", "D2.1.8"]
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 8
+slug = "respond-data-loss-prevention-alerts"
+title = "Respond to DLP alerts"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 9
+slug = "exercise-investigate-alert"
+title = "Exercise - Investigate a DLP alert and related incident"
+kind = "exercise"
+objectives = ["D2.1.2"]
+license_blocked = true
+note = "needs Microsoft 365 E5 / Purview"
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 10
+slug = "knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "purview-data-loss-prevention-alerts"
+n = 11
+slug = "summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- purview-insider-risk-investigate-alerts (13) ---
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 1
+slug = "introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 2
+slug = "understand-insider-risk-alerts"
+title = "Understand insider risk alerts and investigations"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 3
+slug = "manage-alert-volume"
+title = "Manage alert volume in insider risk management"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "IRM policy/threshold tuning; no bullet"
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 4
+slug = "investigate-triage-alerts"
+title = "Investigate and triage insider risk alerts in Microsoft Purview"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 5
+slug = "investigate-alerts-security-copilot-agents"
+title = "Investigate insider risk alerts with Security Copilot and AI agents"
+kind = "concept"
+objectives = ["D2.1.2", "D2.1.8"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 6
+slug = "all-risk-factors-tab"
+title = "Analyze alert context with the All risk factors tab"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 7
+slug = "activity-explorer-tab"
+title = "Investigate activity details with the Activity explorer tab"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 8
+slug = "user-activity-tab"
+title = "Review patterns over time with the User activity tab"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 9
+slug = "investigate-alerts-defender"
+title = "Investigate insider risk alerts in Microsoft Defender XDR"
+kind = "concept"
+objectives = ["D2.1.2"]
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 10
+slug = "insider-risk-cases"
+title = "Manage and take action on insider risk cases"
+kind = "concept"
+objectives = ["D2.1.2"]
+note = "Purview IRM cases - NOT the Defender case management of D2.1.10"
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 11
+slug = "exercise-investigate-alert"
+title = "Exercise - Investigate potential data theft using Insider Risk Management"
+kind = "exercise"
+objectives = ["D2.1.2"]
+license_blocked = true
+note = "needs Microsoft 365 E5 / Purview IRM"
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 12
+slug = "knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "purview-insider-risk-investigate-alerts"
+n = 13
+slug = "summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- purview-audit-search-investigate (10) ---
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 1
+slug = "introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 2
+slug = "audit-overview"
+title = "Understand how Microsoft Purview Audit works"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 3
+slug = "audit-configure-manage"
+title = "Configure and manage Microsoft Purview Audit"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 4
+slug = "audit-premium-retention"
+title = "Configure audit retention with Audit (Premium)"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 5
+slug = "audit-standard-search"
+title = "Run audit searches with Audit (Standard)"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 6
+slug = "audit-premium-investigate"
+title = "Investigate activities with Audit (Premium)"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 7
+slug = "audit-copilot"
+title = "Search for Copilot and AI app activities"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 8
+slug = "audit-export"
+title = "Analyze and report on audit results"
+kind = "concept"
+objectives = ["D2.3.1"]
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 9
+slug = "knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "purview-audit-search-investigate"
+n = 10
+slug = "summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- purview-ediscovery-search (8) ---
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 1
+slug = "introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 2
+slug = "understand-ediscovery"
+title = "Understand eDiscovery and content search capabilities"
+kind = "concept"
+objectives = ["D2.3.2"]
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 3
+slug = "ediscovery-prerequisites"
+title = "Prerequisites for using eDiscovery in Microsoft Purview"
+kind = "concept"
+objectives = ["D2.3.2"]
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 4
+slug = "create-ediscovery-search"
+title = "Create an eDiscovery search"
+kind = "concept"
+objectives = ["D2.3.2"]
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 5
+slug = "conduct-ediscovery-search"
+title = "Conduct an eDiscovery search"
+kind = "concept"
+objectives = ["D2.3.2"]
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 6
+slug = "export-results"
+title = "Export eDiscovery search results"
+kind = "concept"
+objectives = ["D2.3.2"]
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 7
+slug = "knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "purview-ediscovery-search"
+n = 8
+slug = "summary"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- m365-security-threat-protect (4) ---
+
+[[units]]
+module = "m365-security-threat-protect"
+n = 1
+slug = "introduction"
+title = "Introduction to Microsoft Defender for Endpoint"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "m365-security-threat-protect"
+n = 2
+slug = "practice-security-administration"
+title = "Practice security administration"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "product overview / admin tour"
+
+[[units]]
+module = "m365-security-threat-protect"
+n = 3
+slug = "hunt-threats-within-network"
+title = "Hunt threats within your network"
+kind = "concept"
+objectives = ["D3.1.3"]
+
+[[units]]
+module = "m365-security-threat-protect"
+n = 4
+slug = "summary-knowledge-check"
+title = "Summary and knowledge check"
+kind = "summary"
+objectives = []
+
+# --- deploy-microsoft-defender-for-endpoints-environment (10) ---
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 2
+slug = "2-create-your-environment"
+title = "Create your environment"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "tenant setup"
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 3
+slug = "3-understand-operating-systems-compatibility-features"
+title = "Understand operating systems compatibility and features"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 4
+slug = "4-onboard-devices"
+title = "Onboard devices"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "onboarding is deployment, not a bullet"
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 5
+slug = "5-manage-access"
+title = "Manage access"
+kind = "concept"
+objectives = ["D1.1.9"]
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 6
+slug = "6-create-manage-roles-for-role-based-access-control"
+title = "Create and manage roles for role-based access control"
+kind = "concept"
+objectives = ["D1.1.9"]
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 7
+slug = "7-configure-device-groups"
+title = "Configure device groups"
+kind = "concept"
+objectives = ["D1.1.9"]
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 8
+slug = "8-configure-environment-advanced-features"
+title = "Configure environment advanced features"
+kind = "concept"
+objectives = ["D1.1.3"]
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 9
+slug = "9-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "deploy-microsoft-defender-for-endpoints-environment"
+n = 10
+slug = "10-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint (5) ---
+
+[[units]]
+module = "implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint"
+n = 2
+slug = "2-understand-attack-surface-reduction"
+title = "Understand attack surface reduction"
+kind = "concept"
+objectives = ["D1.1.6"]
+
+[[units]]
+module = "implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint"
+n = 3
+slug = "3-enable-attack-surface-reduction-rules"
+title = "Enable attack surface reduction rules"
+kind = "concept"
+objectives = ["D1.1.6"]
+
+[[units]]
+module = "implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint"
+n = 4
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "implement-windows-10-security-enhancements-with-microsoft-defender-for-endpoint"
+n = 5
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- perform-device-investigations-microsoft-defender-for-endpoints (7) ---
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 2
+slug = "2-use-device-inventory-list"
+title = "Use the device inventory list"
+kind = "concept"
+objectives = ["D2.2.1"]
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 3
+slug = "3-investigate-device"
+title = "Investigate the device"
+kind = "concept"
+objectives = ["D2.2.1"]
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 4
+slug = "4-use-behavioral-blocking"
+title = "Use behavioral blocking"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "protection feature description; no bullet"
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 5
+slug = "5-detect-devices-with-device-discovery"
+title = "Detect devices with device discovery"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "perform-device-investigations-microsoft-defender-for-endpoints"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- perform-actions-device-microsoft-defender-for-endpoint (7) ---
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 2
+slug = "2-understand-device-actions"
+title = "Explain device actions"
+kind = "concept"
+objectives = ["D2.2.2"]
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 3
+slug = "3-run-microsoft-defender-antivirus-scan-on-devices"
+title = "Run Microsoft Defender antivirus scan on devices"
+kind = "concept"
+objectives = ["D2.2.2"]
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 4
+slug = "4-collect-investigation-package-from-devices"
+title = "Collect investigation package from devices"
+kind = "concept"
+objectives = ["D2.2.2"]
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 5
+slug = "5-initiate-live-response-session"
+title = "Initiate live response session"
+kind = "concept"
+objectives = ["D2.2.2"]
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "perform-actions-device-microsoft-defender-for-endpoint"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- perform-evidence-entities-investigations-microsoft-defender-for-endpoint (7) ---
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 2
+slug = "2-investigate-file"
+title = "Investigate a file"
+kind = "concept"
+objectives = ["D2.2.3"]
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 3
+slug = "3-investigate-user-account"
+title = "Investigate a user account"
+kind = "concept"
+objectives = ["D2.2.3"]
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 4
+slug = "4-investigate-ip-addresses"
+title = "Investigate an IP address"
+kind = "concept"
+objectives = ["D2.2.3"]
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 5
+slug = "5-investigate-domain"
+title = "Investigate a domain"
+kind = "concept"
+objectives = ["D2.2.3"]
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "perform-evidence-entities-investigations-microsoft-defender-for-endpoint"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- configure-manage-automation-microsoft-defender-for-endpoint (7) ---
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 2
+slug = "2-configure-advanced-features"
+title = "Configure advanced features"
+kind = "concept"
+objectives = ["D1.1.3"]
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 3
+slug = "3-manage-automation-upload-folder-settings"
+title = "Manage automation upload and folder settings"
+kind = "concept"
+objectives = ["D1.1.7"]
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 4
+slug = "4-configure-automated-investigation-remediation-capabilities"
+title = "Configure automated investigation and remediation capabilities"
+kind = "concept"
+objectives = ["D1.1.7", "D1.1.9"]
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 5
+slug = "5-block-risk-devices"
+title = "Block at risk devices"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Intune compliance integration; no bullet"
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "configure-manage-automation-microsoft-defender-for-endpoint"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- configure-settings-for-alerts-detections-microsoft-defender-for-endpoint (7) ---
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 2
+slug = "2-configure-advanced-features"
+title = "Configure advanced features"
+kind = "concept"
+objectives = ["D1.1.3"]
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 3
+slug = "3-configure-alert-notifications"
+title = "Configure alert notifications"
+kind = "concept"
+objectives = ["D1.1.1", "D1.1.2"]
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 4
+slug = "4-manage-alert-suppression"
+title = "Manage alert suppression"
+kind = "concept"
+objectives = ["D1.1.2", "D1.1.4"]
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 5
+slug = "5-manage-indicators"
+title = "Manage indicators"
+kind = "concept"
+objectives = ["D1.1.4"]
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 6
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "configure-settings-for-alerts-detections-microsoft-defender-for-endpoint"
+n = 7
+slug = "8-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- use-threat-vulnerability-management-microsoft-defender-for-endpoint (6) ---
+
+[[units]]
+module = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+n = 2
+slug = "2-understand-threat-vulnerability-management"
+title = "Understand vulnerability management"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "vulnerability management is not on the SC-200 blueprint"
+
+[[units]]
+module = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+n = 3
+slug = "3-explore-vulnerabilities-devices"
+title = "Explore vulnerabilities on your devices"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+n = 4
+slug = "4-manage-remediation"
+title = "Manage remediation"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+n = 5
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "use-threat-vulnerability-management-microsoft-defender-for-endpoint"
+n = 6
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- what-is-azure-defender (7) ---
+
+[[units]]
+module = "what-is-azure-defender"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "what-is-azure-defender"
+n = 2
+slug = "2-what-is-azure-defender"
+title = "Explain Microsoft Defender for Cloud"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "what-is-azure-defender"
+n = 3
+slug = "3-understand-azure-secure-center"
+title = "Describe Microsoft Defender for Cloud workload protections"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "what-is-azure-defender"
+n = 4
+slug = "4-exercise-azure-security-center-interactive-guide"
+title = "Exercise - Microsoft Defender for Cloud interactive guide"
+kind = "exercise"
+objectives = ["D2.1.3"]
+note = "click-through interactive guide; no tenant needed"
+
+[[units]]
+module = "what-is-azure-defender"
+n = 5
+slug = "5-enable-azure-defender"
+title = "Enable Microsoft Defender for Cloud"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "plan enablement / pricing; no bullet"
+
+[[units]]
+module = "what-is-azure-defender"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "what-is-azure-defender"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-azure-assets-to-azure-defender (6) ---
+
+[[units]]
+module = "connect-azure-assets-to-azure-defender"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-azure-assets-to-azure-defender"
+n = 2
+slug = "2-explore-manage-resources-with-asset-inventory"
+title = "Explore and manage your resources with asset inventory"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "connect-azure-assets-to-azure-defender"
+n = 3
+slug = "3-configure-auto-provisioning"
+title = "Configure auto provisioning"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Defender for Cloud agent provisioning - not Sentinel AMA/DCR collection"
+
+[[units]]
+module = "connect-azure-assets-to-azure-defender"
+n = 4
+slug = "4-manual-azure-monitor-agent-provisioning"
+title = "Manual agent provisioning"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "connect-azure-assets-to-azure-defender"
+n = 5
+slug = "5-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-azure-assets-to-azure-defender"
+n = 6
+slug = "6-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-non-azure-machines-to-azure-defender (7) ---
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 2
+slug = "2-protect-non-azure-resources"
+title = "Protect non-Azure resources"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 3
+slug = "3-connect-non-azure-machines"
+title = "Connect non-Azure machines"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 4
+slug = "4-connect-aws-accounts"
+title = "Connect your AWS accounts"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 5
+slug = "5-connect-gcp-accounts"
+title = "Connect your GCP accounts"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-non-azure-machines-to-azure-defender"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- manage-cloud-security-posture-management (7) ---
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 2
+slug = "2-explore-secure-score"
+title = "Explore Secure Score"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "CSPM; SC-200 tests workload-protection alerts only"
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 3
+slug = "3-explore-recommendations"
+title = "Explore Recommendations"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 4
+slug = "4-measure-enforce-regulatory-compliance"
+title = "Measure and enforce regulatory compliance"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 5
+slug = "5-understand-workbooks"
+title = "Understand Workbooks"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Defender for Cloud workbooks, not Sentinel workbooks (D1.2.3)"
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "manage-cloud-security-posture-management"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- understand-azure-defender-cloud-workload-protection (13) ---
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 2
+slug = "2-understand-azure-defender-for-servers"
+title = "Understand Microsoft Defender for servers"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 3
+slug = "3-understand-azure-defender-for-app-service"
+title = "Understand Microsoft Defender for App Service"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 4
+slug = "4-understand-azure-defender-for-storage"
+title = "Understand Microsoft Defender for Storage"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 5
+slug = "5-understand-azure-defender-for-sql"
+title = "Understand Microsoft Defender for SQL"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 6
+slug = "6-understand-azure-defender-for-open-source-databases"
+title = "Understand Microsoft Defender for open-source databases"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 7
+slug = "7-understand-azure-defender-for-key-vault"
+title = "Understand Microsoft Defender for Key Vault"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 8
+slug = "8-understand-azure-defender-for-resource-manager"
+title = "Understand Microsoft Defender for Resource Manager"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 9
+slug = "9-understand-azure-defender-for-dns"
+title = "Understand Microsoft Defender for DNS"
+kind = "concept"
+objectives = ["D2.1.3"]
+note = "Stale: Defender for DNS was folded into Defender for Servers Plan 2 (Aug 2023)."
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 10
+slug = "11-understand-azure-defender-for-container-registries"
+title = "Understand Microsoft Defender for Containers"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 11
+slug = "12-understand-azure-defender-additional-protection"
+title = "Understand Microsoft Defender additional protections"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 12
+slug = "13-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "understand-azure-defender-cloud-workload-protection"
+n = 13
+slug = "14-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- remediate-azure-defender-security-alerts (8) ---
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 2
+slug = "2-understand-security-alerts"
+title = "Understand security alerts"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 3
+slug = "3-remediate-alerts"
+title = "Remediate alerts and automate responses"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 4
+slug = "4-suppress-alerts-from-azure-defender"
+title = "Suppress alerts from Defender for Cloud"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 5
+slug = "5-manage-security-incidents"
+title = "Generate threat intelligence reports"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 6
+slug = "6-respond-alerts-from-azure-resources"
+title = "Respond to alerts from Azure resources"
+kind = "concept"
+objectives = ["D2.1.3"]
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 7
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "remediate-azure-defender-security-alerts"
+n = 8
+slug = "8-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- fundamentals-generative-ai (7) ---
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 2
+slug = "3-language-models"
+title = "Large language models (LLMs)"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 3
+slug = "6-writing-prompts"
+title = "Prompts"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 4
+slug = "7-agents"
+title = "AI agents"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 5
+slug = "7a-exercise"
+title = "Exercise - Explore generative AI"
+kind = "exercise"
+objectives = []
+off_blueprint = true
+note = "Microsoft Foundry exercise"
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 6
+slug = "8-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "fundamentals-generative-ai"
+n = 7
+slug = "9-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- security-copilot-getting-started (8) ---
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 2
+slug = "2-describe-security-copilot"
+title = "Get acquainted with Microsoft Security Copilot"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 3
+slug = "3-describe-terminology"
+title = "Describe Microsoft Security Copilot terminology"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 4
+slug = "4-describe-how-copilot-processes-prompts"
+title = "Describe how Microsoft Security Copilot processes prompt requests"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 5
+slug = "5-create-effective-prompts"
+title = "Describe the elements of an effective prompt"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 6
+slug = "6-describe-how-to-enable-security-copilot"
+title = "Describe how to enable Microsoft Security Copilot"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "SCU capacity provisioning; no bullet"
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 7
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "security-copilot-getting-started"
+n = 8
+slug = "8-summary"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- security-copilot-describe-core-features (9) ---
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 2
+slug = "2-describe-standalone-experience"
+title = "Describe the features available in the standalone experience of Microsoft Security Copilot"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 3
+slug = "2a-describe-session-features"
+title = "Describe the features available in a session of the standalone experience"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 4
+slug = "2b-describe-workspaces"
+title = "Describe workspaces"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Copilot workspace admin"
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 5
+slug = "3-describe-microsoft-plugins"
+title = "Describe Security Copilot plugins"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 6
+slug = "5-describe-custom-promptbooks"
+title = "Describe custom promptbooks"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 7
+slug = "5a-describe-knowledge-base-connections"
+title = "Describe knowledge base connections"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 8
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "security-copilot-describe-core-features"
+n = 9
+slug = "7-summary"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- security-copilot-embedded-experiences (8) ---
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 2
+slug = "2-copilot-for-defender"
+title = "Describe Copilot in Microsoft Defender XDR"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 3
+slug = "3-copilot-for-purview"
+title = "Copilot in Microsoft Purview"
+kind = "concept"
+objectives = ["D2.1.8", "D2.1.2"]
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 4
+slug = "4-copilot-for-entra"
+title = "Copilot in Microsoft Entra"
+kind = "concept"
+objectives = ["D2.1.8", "D2.1.5"]
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 5
+slug = "5-copilot-for-intune"
+title = "Copilot in Microsoft Intune"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Intune is not an SC-200 product"
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 6
+slug = "5a-copilot-for-defender-cloud"
+title = "Copilot in Microsoft Defender for Cloud"
+kind = "concept"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 7
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "security-copilot-embedded-experiences"
+n = 8
+slug = "7-summary"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- security-copilot-interactive-guides (11) ---
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 2
+slug = "2-explore-owner-settings-security-copilot"
+title = "Explore owner settings in Security Copilot"
+kind = "exercise"
+objectives = []
+off_blueprint = true
+note = "Copilot owner/admin settings"
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 3
+slug = "3-use-prompts-promptbooks-security-copilot"
+title = "Use prompts and promptbooks in Security Copilot"
+kind = "exercise"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 4
+slug = "4-create-custom-promptbook-security-copilot"
+title = "Create a custom promptbook in Security Copilot"
+kind = "exercise"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 5
+slug = "5-investigate-data-protection-activity-purview"
+title = "Investigate data protection activity in Microsoft Purview"
+kind = "exercise"
+objectives = ["D2.1.8", "D2.1.2"]
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 6
+slug = "6-investigate-insider-risks-compliance-purview"
+title = "Investigate insider risks and compliance in Microsoft Purview"
+kind = "exercise"
+objectives = ["D2.1.8", "D2.1.2"]
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 7
+slug = "7-investigate-security-incidents-defender-xdr"
+title = "Investigate security incidents in Microsoft Defender XDR"
+kind = "exercise"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 8
+slug = "8-explore-create-agent-security-copilot"
+title = "Explore and create an agent in Security Copilot"
+kind = "exercise"
+objectives = ["D2.1.8"]
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 9
+slug = "9-explore-conditional-access-agent"
+title = "Explore the Conditional Access Optimization Agent"
+kind = "exercise"
+objectives = []
+off_blueprint = true
+note = "Entra CA optimization; no bullet"
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 10
+slug = "10-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "security-copilot-interactive-guides"
+n = 11
+slug = "11-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- construct-kusto-query-language-statements (10) ---
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 2
+slug = "2-understand-kusto-query-language-statement-structure"
+title = "Understand the Kusto Query Language statement structure"
+kind = "concept"
+objectives = ["D3.1.2", "D3.1.1"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 3
+slug = "3-use-search-operator"
+title = "Use the search operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 4
+slug = "4-use-where-operator"
+title = "Use the where operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 5
+slug = "5-use-let-statement"
+title = "Use the let statement"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 6
+slug = "6-use-extend-operator"
+title = "Use the extend operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 7
+slug = "7-use-order-by-operator"
+title = "Use the order by operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 8
+slug = "8-use-project-operators"
+title = "Use the project operators"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 9
+slug = "9-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "construct-kusto-query-language-statements"
+n = 10
+slug = "10-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- analyze-results-kusto-query-language (7) ---
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 2
+slug = "2-use-summarize-operator"
+title = "Use the summarize operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 3
+slug = "3-use-summarize-operator-to-filter-results"
+title = "Use the summarize operator to filter results"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 4
+slug = "4-use-summarize-operator-to-prepare-data"
+title = "Use the summarize operator to prepare data"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 5
+slug = "5-use-render-operator-to-create-visualizations"
+title = "Use the render operator to create visualizations"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "analyze-results-kusto-query-language"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- build-multi-table-statements-kusto-query-language (5) ---
+
+[[units]]
+module = "build-multi-table-statements-kusto-query-language"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "build-multi-table-statements-kusto-query-language"
+n = 2
+slug = "2-use-union-operator"
+title = "Use the union operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "build-multi-table-statements-kusto-query-language"
+n = 3
+slug = "3-use-join-operator"
+title = "Use the join operator"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "build-multi-table-statements-kusto-query-language"
+n = 4
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "build-multi-table-statements-kusto-query-language"
+n = 5
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- work-with-data-kusto-query-language (7) ---
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 2
+slug = "2-extract-data-from-unstructured-string-fields"
+title = "Extract data from unstructured string fields"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 3
+slug = "3-extract-data-from-structured-string-data"
+title = "Extract data from structured string data"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 4
+slug = "4-integrate-external-data"
+title = "Integrate external data"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 5
+slug = "5-create-parsers-functions"
+title = "Create parsers with functions"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "work-with-data-kusto-query-language"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- intro-to-azure-sentinel (6) ---
+
+[[units]]
+module = "intro-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "intro-to-azure-sentinel"
+n = 2
+slug = "2-what-is-azure-sentinel"
+title = "What is Microsoft Sentinel?"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "product orientation"
+
+[[units]]
+module = "intro-to-azure-sentinel"
+n = 3
+slug = "3-how-azure-sentinel-works"
+title = "How Microsoft Sentinel works"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "product orientation"
+
+[[units]]
+module = "intro-to-azure-sentinel"
+n = 4
+slug = "4-when-to-use-azure-sentinel"
+title = "When to use Microsoft Sentinel"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "intro-to-azure-sentinel"
+n = 5
+slug = "5-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "intro-to-azure-sentinel"
+n = 6
+slug = "6-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- create-manage-azure-sentinel-workspaces (9) ---
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 2
+slug = "2-plan-for-azure-sentinel-workspace"
+title = "Plan for the Microsoft Sentinel workspace"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "workspace architecture design; no bullet"
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 3
+slug = "3-create-azure-sentinel-workspace"
+title = "Create a Microsoft Sentinel workspace"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 4
+slug = "4-manage-workspaces-across-tenants-using-azure-lighthouse"
+title = "Manage workspaces across tenants using Azure Lighthouse"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "MSSP-relevant at work, not on the blueprint"
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 5
+slug = "5-understand-azure-sentinel-permissions-roles"
+title = "Understand Microsoft Sentinel permissions and roles"
+kind = "concept"
+objectives = ["D1.2.1"]
+thin_coverage = true
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 6
+slug = "6-manage-azure-sentinel-settings"
+title = "Manage Microsoft Sentinel settings"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 7
+slug = "7-configure-logs"
+title = "Configure logs"
+kind = "concept"
+objectives = ["D1.2.2"]
+note = "Analytics / Data lake / XDR default tiers, Defender-portal table management. Only mentions KQL jobs, summary rules and _CL tables in passing. Verified 2026-11-12."
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 8
+slug = "8-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "create-manage-azure-sentinel-workspaces"
+n = 9
+slug = "9-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- query-logs-azure-sentinel (7) ---
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 2
+slug = "2-query-logs-page"
+title = "Query logs in the logs page"
+kind = "concept"
+objectives = ["D3.1.1"]
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 3
+slug = "3-understand-azure-sentinel-tables"
+title = "Understand Microsoft Sentinel tables"
+kind = "concept"
+objectives = ["D3.1.1"]
+note = "Stale: lists ThreatIntelligenceIndicator (no data since 31 Jul 2025)."
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 4
+slug = "4-understand-common-tables"
+title = "Understand common tables"
+kind = "concept"
+objectives = ["D3.1.1"]
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 5
+slug = "5-understand-microsoft-365-defender-tables"
+title = "Understand Microsoft Defender XDR tables"
+kind = "concept"
+objectives = ["D3.1.1", "D3.1.3"]
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "query-logs-azure-sentinel"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- use-watchlists-azure-sentinel (6) ---
+
+[[units]]
+module = "use-watchlists-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "use-watchlists-azure-sentinel"
+n = 2
+slug = "2-plan-for-azure-watchlists"
+title = "Plan for watchlists"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "watchlists are not named by any current bullet"
+
+[[units]]
+module = "use-watchlists-azure-sentinel"
+n = 3
+slug = "3-create-watchlist"
+title = "Create a watchlist"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "use-watchlists-azure-sentinel"
+n = 4
+slug = "4-manage-watchlists"
+title = "Manage watchlists"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "use-watchlists-azure-sentinel"
+n = 5
+slug = "5-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "use-watchlists-azure-sentinel"
+n = 6
+slug = "6-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- utilize-threat-intelligence-azure-sentinel (6) ---
+
+[[units]]
+module = "utilize-threat-intelligence-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "utilize-threat-intelligence-azure-sentinel"
+n = 2
+slug = "2-define-threat-intelligence"
+title = "Define threat intelligence"
+kind = "concept"
+objectives = ["D1.3.6"]
+
+[[units]]
+module = "utilize-threat-intelligence-azure-sentinel"
+n = 3
+slug = "3-manage-threat-indicators"
+title = "Manage your threat indicators"
+kind = "concept"
+objectives = ["D1.3.6"]
+
+[[units]]
+module = "utilize-threat-intelligence-azure-sentinel"
+n = 4
+slug = "4-view-threat-indicators-with-kql"
+title = "View your threat indicators with KQL"
+kind = "concept"
+objectives = ["D1.3.6", "D3.1.2"]
+note = "Stale: teaches ThreatIntelligenceIndicator, which stopped receiving data 31 Jul 2025 (now ThreatIntelIndicators / ThreatIntelObjects)."
+
+[[units]]
+module = "utilize-threat-intelligence-azure-sentinel"
+n = 5
+slug = "5-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "utilize-threat-intelligence-azure-sentinel"
+n = 6
+slug = "6-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- integrate-microsoft-defender-xdr-with-microsoft-sentinel (8) ---
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 2
+slug = "2-benefits-of-integration"
+title = "Understand the benefits of integrating Microsoft Sentinel with Defender XDR"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "unified-portal orientation"
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 3
+slug = "3-capability-differences-between-portals"
+title = "Explore the capability differences between Microsoft Defender XDR and Microsoft Sentinel portals"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 4
+slug = "4-onboarding-sentinel-to-defender-xdr"
+title = "Onboarding Microsoft Sentinel to Microsoft Defender XDR"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 5
+slug = "5-exploring-sentinel-features-in-defender-xdr"
+title = "Explore Microsoft Sentinel features in Microsoft Defender XDR"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "link list to docs; no teaching. Verified 2026-11-12."
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 6
+slug = "simulation-exercise-deploy-sentinel-to-defender"
+title = "Exercise - Connect Microsoft Sentinel to Microsoft Defender XDR"
+kind = "exercise"
+objectives = ["D1.3.1"]
+note = "simulation"
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 7
+slug = "knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "integrate-microsoft-defender-xdr-with-microsoft-sentinel"
+n = 8
+slug = "summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- connect-data-to-azure-sentinel-with-data-connectors (6) ---
+
+[[units]]
+module = "connect-data-to-azure-sentinel-with-data-connectors"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-data-to-azure-sentinel-with-data-connectors"
+n = 2
+slug = "2-ingest-log-data-with-data-connectors"
+title = "Ingest log data with data connectors"
+kind = "concept"
+objectives = ["D1.3.1", "D1.3.4"]
+
+[[units]]
+module = "connect-data-to-azure-sentinel-with-data-connectors"
+n = 3
+slug = "3-understand-data-connector-providers"
+title = "Understand data connector providers"
+kind = "concept"
+objectives = ["D1.3.1", "D1.3.4"]
+note = "Holds the CEF forwarder diagrams. Stale: names the HTTP Data Collector API, unsupported after 14 Sep 2026."
+
+[[units]]
+module = "connect-data-to-azure-sentinel-with-data-connectors"
+n = 4
+slug = "4-view-connected-hosts"
+title = "View connected hosts"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-data-to-azure-sentinel-with-data-connectors"
+n = 5
+slug = "5-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-data-to-azure-sentinel-with-data-connectors"
+n = 6
+slug = "6-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-microsoft-services-to-azure-sentinel (8) ---
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 2
+slug = "2-plan-for-microsoft-services-connectors"
+title = "Plan for Microsoft services connectors"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 3
+slug = "3-connect-office-365-connector"
+title = "Connect the Microsoft 365 connector"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 4
+slug = "4-connect-azure-active-directory-connector"
+title = "Connect the Microsoft Entra connector"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 5
+slug = "5-connect-azure-active-directory-identity-protection-connector"
+title = "Connect the Microsoft Entra ID Protection connector"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 6
+slug = "6-connect-azure-activity-connector"
+title = "Connect the Azure Activity connector"
+kind = "concept"
+objectives = ["D1.3.5"]
+thin_coverage = true
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 7
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-microsoft-services-to-azure-sentinel"
+n = 8
+slug = "8-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-microsoft-defender-365-to-azure-sentinel (8) ---
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 2
+slug = "2-plan-for-microsoft-365-defender-connectors"
+title = "Plan for Microsoft Defender XDR connectors"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 3
+slug = "3-connect-microsoft-365-defender-connector"
+title = "Connect the Microsoft Defender XDR connector"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 4
+slug = "4-connect-microsoft-defender-cloud-connector"
+title = "Connect Microsoft Defender for Cloud connector"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 5
+slug = "5-connect-microsoft-defender-iot"
+title = "Connect Microsoft Defender for IoT"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Defender for IoT is not an SC-200 product"
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 6
+slug = "6-connect-microsoft-defender-legacy-connectors"
+title = "Connect Microsoft Defender legacy connectors"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "legacy connectors"
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 7
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-microsoft-defender-365-to-azure-sentinel"
+n = 8
+slug = "8-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-windows-hosts-to-azure-sentinel (7) ---
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 2
+slug = "2-plan-for-windows-hosts-security-events-connector"
+title = "Plan for Windows hosts security events connector"
+kind = "concept"
+objectives = ["D1.3.1", "D1.3.2", "D1.3.3"]
+thin_coverage = true
+note = "Only training mention of Windows Forwarded Events / WEC (WEF) - a paragraph. Verified 2026-11-12."
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 3
+slug = "2a-configure-data-collection-rules"
+title = "Connect using the Windows Security Events via AMA Connector"
+kind = "concept"
+objectives = ["D1.3.2"]
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 4
+slug = "2b-connect-windows-hosts"
+title = "Connect using the Security Events via Legacy Agent Connector"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "Log Analytics agent deprecated Aug 31, 2024"
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 5
+slug = "3-collect-sysmon-event-logs"
+title = "Collect Sysmon event logs"
+kind = "concept"
+objectives = ["D1.3.1", "D1.3.3"]
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 6
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-windows-hosts-to-azure-sentinel"
+n = 7
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-common-event-format-logs-to-azure-sentinel (5) ---
+
+[[units]]
+module = "connect-common-event-format-logs-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-common-event-format-logs-to-azure-sentinel"
+n = 2
+slug = "2-plan-for-common-event-format-cef-connector"
+title = "Plan for Common Event Format connector"
+kind = "concept"
+objectives = ["D1.3.4"]
+
+[[units]]
+module = "connect-common-event-format-logs-to-azure-sentinel"
+n = 3
+slug = "3-connect-your-external-solution-use-common-event-format-connector"
+title = "Connect your external solution using the Common Event Format connector"
+kind = "concept"
+objectives = ["D1.3.4"]
+note = "Wrong: says AMA listens on TCP 514; the Syslog daemon listens on 514 and AMA receives on TCP 28330."
+
+[[units]]
+module = "connect-common-event-format-logs-to-azure-sentinel"
+n = 4
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-common-event-format-logs-to-azure-sentinel"
+n = 5
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-syslog-data-sources-to-azure-sentinel (7) ---
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 2
+slug = "2-plan-for-syslog-connector"
+title = "Plan for syslog data collection"
+kind = "concept"
+objectives = ["D1.3.4"]
+note = "Outdated: Unix-socket handover was pre-AMA 1.28.11; now TCP 28330."
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 3
+slug = "3-collect-data-from-linux-based-sources-using-syslog"
+title = "Collect data from Linux-based sources using syslog"
+kind = "concept"
+objectives = ["D1.3.4"]
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 4
+slug = "4-configure-log-analytics-agent"
+title = "Configure the Data Collection Rule for Syslog Data Sources"
+kind = "concept"
+objectives = ["D1.3.4"]
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 5
+slug = "5-parse-syslog-data"
+title = "Parse syslog data with KQL"
+kind = "concept"
+objectives = ["D1.3.4", "D3.1.2"]
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-syslog-data-sources-to-azure-sentinel"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- connect-threat-indicators-to-azure-sentinel (8) ---
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 2
+slug = "2-plan-for-threat-intelligence-connectors"
+title = "Plan for threat intelligence connectors"
+kind = "concept"
+objectives = ["D1.3.6"]
+note = "Stale: lists the TIP connector, which stopped collecting in June 2026."
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 3
+slug = "3-connect-defender-threat-intelligence-connector"
+title = "Connect the Defender Threat Intelligence connector"
+kind = "concept"
+objectives = ["D1.3.6"]
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 4
+slug = "4-connect-threat-intelligence-taxii-connector"
+title = "Connect the threat intelligence TAXII connector"
+kind = "concept"
+objectives = ["D1.3.6"]
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 5
+slug = "5-connect-threat-intelligence-upload-api-connector"
+title = "Connect the threat intelligence Upload API connector"
+kind = "concept"
+objectives = ["D1.3.6"]
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 6
+slug = "6-view-your-threat-indicators"
+title = "View your threat indicators with KQL"
+kind = "concept"
+objectives = ["D1.3.6"]
+note = "Stale: teaches ThreatIntelligenceIndicator, which stopped receiving data 31 Jul 2025 (now ThreatIntelIndicators / ThreatIntelObjects)."
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 7
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "connect-threat-indicators-to-azure-sentinel"
+n = 8
+slug = "8-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- analyze-data-in-sentinel (9) ---
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 2
+slug = "2-exercise-setup"
+title = "Exercise - Detect threats with Microsoft Sentinel analytics"
+kind = "exercise"
+objectives = ["D1.4.3"]
+note = "environment setup; Azure subscription only"
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 3
+slug = "3-azure-sentinel-analytics-overview"
+title = "What is Microsoft Sentinel Analytics?"
+kind = "concept"
+objectives = ["D1.4.3"]
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 4
+slug = "4-analytics-rules"
+title = "Types of analytics rules"
+kind = "concept"
+objectives = ["D1.4.3", "D1.4.5"]
+note = "D1.4.5 mapping is weak: only one line on anomalies (\"anomaly alerts are informational\") - anomalies are Anomalies-table rows, not alerts."
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 5
+slug = "5-create-rule-from-templates"
+title = "Create an analytics rule from templates"
+kind = "concept"
+objectives = ["D1.4.3"]
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 6
+slug = "6-create-rule-from-wizard"
+title = "Create an analytics rule from wizard"
+kind = "concept"
+objectives = ["D1.4.3"]
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 7
+slug = "7-manage-analytics-rules"
+title = "Manage analytics rules"
+kind = "concept"
+objectives = ["D1.4.3"]
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 8
+slug = "8-exercise-detect-threats"
+title = "Exercise - Detect threats with Microsoft Sentinel analytics"
+kind = "exercise"
+objectives = ["D1.4.3"]
+
+[[units]]
+module = "analyze-data-in-sentinel"
+n = 9
+slug = "9-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- automation-microsoft-sentinel (5) ---
+
+[[units]]
+module = "automation-microsoft-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "automation-microsoft-sentinel"
+n = 2
+slug = "2-understand-automation-options"
+title = "Understand automation options"
+kind = "concept"
+objectives = ["D1.1.10", "D1.1.11"]
+
+[[units]]
+module = "automation-microsoft-sentinel"
+n = 3
+slug = "3-create-automation-rules"
+title = "Create automation rules"
+kind = "concept"
+objectives = ["D1.1.10"]
+
+[[units]]
+module = "automation-microsoft-sentinel"
+n = 4
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "automation-microsoft-sentinel"
+n = 5
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- threat-response-sentinel-playbooks (7) ---
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 2
+slug = "2-exercise-setup"
+title = "Exercise - Create a Microsoft Sentinel playbook"
+kind = "exercise"
+objectives = ["D1.1.11"]
+note = "environment setup"
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 3
+slug = "3-playbook-overview"
+title = "What are Microsoft Sentinel playbooks?"
+kind = "concept"
+objectives = ["D1.1.11"]
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 4
+slug = "4-playbook-trigger"
+title = "Trigger a playbook in real-time"
+kind = "concept"
+objectives = ["D1.1.11"]
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 5
+slug = "5-playbook-on-demand"
+title = "Run playbooks on demand"
+kind = "concept"
+objectives = ["D1.1.11"]
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 6
+slug = "6-exercise-create-playbook"
+title = "Exercise - Create a Microsoft Sentinel playbook"
+kind = "exercise"
+objectives = ["D1.1.11"]
+
+[[units]]
+module = "threat-response-sentinel-playbooks"
+n = 7
+slug = "7-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- incident-management-sentinel (7) ---
+
+[[units]]
+module = "incident-management-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "incident-management-sentinel"
+n = 2
+slug = "2-exercise-setup"
+title = "Exercise - Set up the Azure environment"
+kind = "exercise"
+objectives = ["D2.1.7"]
+note = "environment setup"
+
+[[units]]
+module = "incident-management-sentinel"
+n = 3
+slug = "3-describe-incident-management"
+title = "Understand incidents"
+kind = "concept"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "incident-management-sentinel"
+n = 4
+slug = "4-understand-evidence-entities"
+title = "Incident evidence and entities"
+kind = "concept"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "incident-management-sentinel"
+n = 5
+slug = "5-manage-incidents"
+title = "Incident management"
+kind = "concept"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "incident-management-sentinel"
+n = 6
+slug = "6-exercise-investigate-incident"
+title = "Exercise - Investigate an incident"
+kind = "exercise"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "incident-management-sentinel"
+n = 7
+slug = "7-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- use-entity-behavior-analytics-azure-sentinel (7) ---
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 2
+slug = "2-understand-user-entity-behavior-analytics"
+title = "Understand behavioral analytics"
+kind = "concept"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 3
+slug = "3-explore-entities"
+title = "Explore entities"
+kind = "concept"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 4
+slug = "4-display-entity-behavior-information"
+title = "Display entity behavior information"
+kind = "concept"
+objectives = ["D2.1.7"]
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 5
+slug = "4a-use-anomaly-detection-analytical-rule-templates"
+title = "Use Anomaly detection analytical rule templates"
+kind = "concept"
+objectives = ["D1.4.5"]
+note = "Describes the old activate-from-Rule-templates flow and has no screenshots; product docs supersede it (anomaly rules are on by default with their own Anomalies tab)."
+thin_coverage = true
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 6
+slug = "5-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "use-entity-behavior-analytics-azure-sentinel"
+n = 7
+slug = "6-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- data-normalization-microsoft-sentinel (8) ---
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 2
+slug = "2-understand"
+title = "Understand data normalization"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "ASIM is not named by any current bullet"
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 3
+slug = "3-use-asim-parsers"
+title = "Use ASIM Parsers"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 4
+slug = "4-understand-parameterized-kql-functions"
+title = "Understand parameterized KQL functions"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 5
+slug = "5-create-asim-parser"
+title = "Create an ASIM Parser"
+kind = "concept"
+objectives = []
+off_blueprint = true
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 6
+slug = "6-configure-azure-monitor-data-collection-rules"
+title = "Configure Azure Monitor Data Collection Rules"
+kind = "concept"
+objectives = ["D1.3.2"]
+note = "DCR types + ingestion-time KQL transformations; does not teach custom table creation (D1.3.7)"
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 7
+slug = "7-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "data-normalization-microsoft-sentinel"
+n = 8
+slug = "8-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- query-data-sentinel (8) ---
+
+[[units]]
+module = "query-data-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "query-data-sentinel"
+n = 2
+slug = "2-exercise-setup"
+title = "Exercise - Query and visualize data with Microsoft Sentinel Workbooks"
+kind = "exercise"
+objectives = ["D1.2.3"]
+note = "environment setup"
+
+[[units]]
+module = "query-data-sentinel"
+n = 3
+slug = "3-monitor-visualize-data"
+title = "Monitor and visualize data"
+kind = "concept"
+objectives = ["D1.2.3", "D3.1.2"]
+note = "Mostly a tour of the Logs (KQL) page - serves KQL more than workbooks. Kept on D1.2.3 because its images are placed there."
+
+[[units]]
+module = "query-data-sentinel"
+n = 4
+slug = "4-query-data"
+title = "Query data using Kusto Query Language"
+kind = "concept"
+objectives = ["D3.1.2"]
+
+[[units]]
+module = "query-data-sentinel"
+n = 5
+slug = "5-workbooks"
+title = "Use default Microsoft Sentinel Workbooks"
+kind = "concept"
+objectives = ["D1.2.3"]
+
+[[units]]
+module = "query-data-sentinel"
+n = 6
+slug = "6-create-new-workbook"
+title = "Create a new Microsoft Sentinel Workbook"
+kind = "concept"
+objectives = ["D1.2.3"]
+
+[[units]]
+module = "query-data-sentinel"
+n = 7
+slug = "7-exercise-visualize-data"
+title = "Exercise - Visualize data using Microsoft Sentinel Workbooks"
+kind = "exercise"
+objectives = ["D1.2.3"]
+
+[[units]]
+module = "query-data-sentinel"
+n = 8
+slug = "8-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- manage-content-microsoft-sentinel (5) ---
+
+[[units]]
+module = "manage-content-microsoft-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "manage-content-microsoft-sentinel"
+n = 2
+slug = "2-use-solutions-from-content-hub"
+title = "Use solutions from the content hub"
+kind = "concept"
+objectives = ["D1.3.1"]
+
+[[units]]
+module = "manage-content-microsoft-sentinel"
+n = 3
+slug = "3-use-repositories-for-deployment"
+title = "Use repositories for deployment"
+kind = "concept"
+objectives = []
+off_blueprint = true
+note = "CI/CD from GitHub/Azure DevOps; no bullet"
+
+[[units]]
+module = "manage-content-microsoft-sentinel"
+n = 4
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "manage-content-microsoft-sentinel"
+n = 5
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- what-is-threat-hunting-azure-sentinel (6) ---
+
+[[units]]
+module = "what-is-threat-hunting-azure-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "what-is-threat-hunting-azure-sentinel"
+n = 2
+slug = "2-understand-cybersecurity-threat-hunts"
+title = "Understand cybersecurity threat hunts"
+kind = "concept"
+objectives = ["D3.2.1"]
+
+[[units]]
+module = "what-is-threat-hunting-azure-sentinel"
+n = 3
+slug = "3-develop-hypothesis"
+title = "Develop a hypothesis"
+kind = "concept"
+objectives = ["D3.2.1"]
+
+[[units]]
+module = "what-is-threat-hunting-azure-sentinel"
+n = 4
+slug = "3a-explore-mitre-att-ck"
+title = "Explore MITRE ATT&CK"
+kind = "concept"
+objectives = ["D1.4.4"]
+thin_coverage = true
+
+[[units]]
+module = "what-is-threat-hunting-azure-sentinel"
+n = 5
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "what-is-threat-hunting-azure-sentinel"
+n = 6
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- hunt-threats-sentinel (7) ---
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 2
+slug = "2-exercise-setup"
+title = "Exercise setup"
+kind = "exercise"
+objectives = ["D3.2.1"]
+note = "environment setup"
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 3
+slug = "3-query-management-creation"
+title = "Explore creation and management of threat-hunting queries"
+kind = "concept"
+objectives = ["D3.2.1"]
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 4
+slug = "4-bookmarks"
+title = "Save key findings with bookmarks"
+kind = "concept"
+objectives = ["D3.2.1"]
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 5
+slug = "5-livestream"
+title = "Track threat-hunting investigations with hunts"
+kind = "concept"
+objectives = ["D3.2.1"]
+note = "Livestream is retired; this unit now teaches hunts (the module landing page still lists livestream)."
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 6
+slug = "6-exercise-hunt-for-threats"
+title = "Exercise - Hunt for threats by using Microsoft Sentinel"
+kind = "exercise"
+objectives = ["D3.2.1"]
+
+[[units]]
+module = "hunt-threats-sentinel"
+n = 7
+slug = "7-summary"
+title = "Summary"
+kind = "summary"
+objectives = []
+
+# --- use-search-jobs-microsoft-sentinel (5) ---
+
+[[units]]
+module = "use-search-jobs-microsoft-sentinel"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "use-search-jobs-microsoft-sentinel"
+n = 2
+slug = "2-hunt-search-job"
+title = "Hunt with a Search Job"
+kind = "concept"
+objectives = ["D3.2.1", "D1.2.2"]
+note = "search jobs are NOT data-lake KQL jobs (D3.2.2)"
+
+[[units]]
+module = "use-search-jobs-microsoft-sentinel"
+n = 3
+slug = "3-restore-historical-data"
+title = "Restore historical data"
+kind = "concept"
+objectives = ["D1.2.2"]
+
+[[units]]
+module = "use-search-jobs-microsoft-sentinel"
+n = 4
+slug = "4-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "use-search-jobs-microsoft-sentinel"
+n = 5
+slug = "5-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
+
+# --- perform-threat-hunting-sentinel-with-notebooks (7) ---
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 1
+slug = "1-introduction"
+title = "Introduction"
+kind = "intro"
+objectives = []
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 2
+slug = "2-access-azure-sentinel-data-with-external-tools"
+title = "Access Azure Sentinel data with external tools"
+kind = "concept"
+objectives = ["D3.2.4"]
+note = "Kqlmagic + msticpy; no Sentinel MCP Server coverage (verified 2026-11-12)"
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 3
+slug = "3-hunt-with-notebooks"
+title = "Hunt with notebooks"
+kind = "concept"
+objectives = ["D3.2.4"]
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 4
+slug = "4-create-notebook"
+title = "Create a notebook"
+kind = "concept"
+objectives = ["D3.2.4"]
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 5
+slug = "5-explore-notebook-code"
+title = "Explore notebook code"
+kind = "concept"
+objectives = ["D3.2.4"]
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 6
+slug = "6-knowledge-check"
+title = "Module assessment"
+kind = "assessment"
+objectives = []
+
+[[units]]
+module = "perform-threat-hunting-sentinel-with-notebooks"
+n = 7
+slug = "7-summary-resources"
+title = "Summary and resources"
+kind = "summary"
+objectives = []
